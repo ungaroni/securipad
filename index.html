@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SecuriPad™ · Biosecurity bedding for cooperative integrators · EcoLogz</title>
+  <meta name="description" content="SecuriPad is an evaporative, steam sterilized poultry bedding engineered by EcoLogz for cooperative integrators. Healthier flocks, less antibiotics, cleaner litter." />
+  <!-- ⬇ ALL editable site content lives here. Edit content.js, save, refresh. -->
+  <script src="content.js"></script>
+  <script>
+    // Apply title + description from content.js as soon as it loads
+    if (window.SITE && window.SITE.meta) {
+      document.title = window.SITE.meta.title;
+      const m = document.querySelector('meta[name="description"]');
+      if (m) m.setAttribute('content', window.SITE.meta.description);
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --cream: #f2e7c3;
+      --cream-2: #ece1be;
+      --cream-3: #e3d4a4;
+      --paper: #fffdf6;
+      --bone: #f2e7c3;
+      --ink: #2a1c10;
+      --brown: #725135;
+      --brown-2: #8a6a4e;
+      --brown-3: #a8896a;
+      --mute: #b59b7a;
+      --rule: #d8c89e;
+      --rule-2: #b8a073;
+      --orange: #d05f1c;
+      --orange-deep: #a64812;
+      --orange-soft: #f5c89a;
+      --leaf: #96c424;
+      --leaf-deep: #7aa015;
+      --moss: #4f6b3a;
+      --soil: #1f140a;
+      --soil-2: #2c1d10;
+      --sans: "Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+      --serif: "Fraunces","Georgia","Times New Roman",serif;
+      --mono: "JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    html,body{margin:0;padding:0;}
+    body{font-family:var(--sans);color:var(--brown);background:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:17px;line-height:1.6;}
+    h1,h2,h3,h4{color:var(--ink);}
+    /* Grain texture overlay */
+    body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.028;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat:repeat;background-size:180px;}
+    img{max-width:100%;display:block;}
+    button{font-family:inherit;cursor:pointer;}
+    a{color:inherit;}
+    ::selection{background:var(--orange);color:white;}
+    section[id]{scroll-margin-top:80px;}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s cubic-bezier(0.2,0.7,0.2,1),transform 0.7s cubic-bezier(0.2,0.7,0.2,1);}
+    .reveal.in{opacity:1;transform:none;}
+
+    /* Keyframes */
+    @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+    /* Range slider */
+    input[type=range]{-webkit-appearance:none;appearance:none;height:4px;background:var(--rule-2);border-radius:999px;outline:none;}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--orange);cursor:pointer;}
+
+    /* Responsive */
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr!important;}
+      .hero-right{display:none!important;}
+      .product-stage{grid-template-columns:1fr!important;min-height:auto!important;}
+      .product-stage > div:first-child{aspect-ratio:4/3!important;}
+      .product-nav{grid-template-columns:repeat(2,1fr)!important;}
+      .product-nav button:nth-child(2){border-right:none!important;}
+      .product-nav button:nth-child(3),.product-nav button:nth-child(4){border-top:1px solid var(--rule)!important;}
+      .sci-grid{grid-template-columns:1fr!important;}
+      .rs-tabs{grid-template-columns:1fr!important;}
+      .su-grid{grid-template-columns:1fr!important;}
+      .farms-grid{grid-template-columns:repeat(2,1fr)!important;}
+      .contact-grid{grid-template-columns:1fr!important;}
+      .footer-grid{grid-template-columns:1fr 1fr!important;}
+      .cert-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
+      .testi-grid{grid-template-columns:1fr!important;gap:36px!important;}
+    }
+    @media(max-width:680px){
+      .nav-links{display:none!important;}
+      .hamburger{display:flex!important;}
+      .hero-stats{grid-template-columns:repeat(2,auto)!important;}
+      .sci-foot{grid-template-columns:1fr!important;}
+      .farms-grid{grid-template-columns:1fr!important;}
+      .contact-blocks{grid-template-columns:1fr!important;}
+      .frow{grid-template-columns:1fr!important;}
+      .frow3{grid-template-columns:1fr 1fr!important;}
+      .footer-grid{grid-template-columns:1fr!important;}
+      .su-flow{flex-direction:column!important;}
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // ── Site content (loaded from content.js) ────────────────────────
+    const S = window.SITE || {};
+
+    // ── Hand drawn sprig SVG (Sonnenerde style accents) ───────────────
+    function Sprig({ size = 24, color = "var(--leaf-deep)", style }) {
+      return (
+        <svg width={size} height={size} viewBox="0 0 32 32" fill="none" style={style}>
+          <path d="M16 28 C16 20, 16 12, 16 4" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M16 22 C12 22, 9 20, 7 16 C11 16, 14 18, 16 22Z" fill={color}/>
+          <path d="M16 18 C20 18, 23 16, 25 12 C21 12, 18 14, 16 18Z" fill={color}/>
+          <path d="M16 14 C12 14, 9 12, 7 8 C11 8, 14 10, 16 14Z" fill={color} opacity="0.85"/>
+          <path d="M16 10 C20 10, 23 8, 25 4 C21 4, 18 6, 16 10Z" fill={color} opacity="0.85"/>
+        </svg>
+      );
+    }
+
+    function Wheat({ size = 28, color = "var(--brown)", style }) {
+      return (
+        <svg width={size} height={size} viewBox="0 0 32 36" fill="none" style={style}>
+          <path d="M16 34 L16 14" stroke={color} strokeWidth="1.4" strokeLinecap="round"/>
+          {[0,1,2,3,4].map(i => (
+            <g key={i}>
+              <ellipse cx={11} cy={14 + i*4} rx="3" ry="2" fill={color} transform={`rotate(-30 11 ${14+i*4})`}/>
+              <ellipse cx={21} cy={14 + i*4} rx="3" ry="2" fill={color} transform={`rotate(30 21 ${14+i*4})`}/>
+            </g>
+          ))}
+          <ellipse cx="16" cy="9" rx="2.5" ry="3.5" fill={color}/>
+        </svg>
+      );
+    }
+
+    // ── Reveal hook ───────────────────────────────────────────────────
+    function useReveal() {
+      const ref = useRef(null);
+      const [seen, setSeen] = useState(false);
+      useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const io = new IntersectionObserver(
+          entries => entries.forEach(e => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } }),
+          { threshold: 0.15 }
+        );
+        io.observe(el);
+        return () => io.disconnect();
+      }, []);
+      return [ref, seen];
+    }
+
+    function Reveal({ children, delay = 0, as: Tag = "div", style, ...rest }) {
+      const [ref, seen] = useReveal();
+      return (
+        <Tag ref={ref} className={"reveal" + (seen ? " in" : "")}
+          style={{ transitionDelay: `${delay}ms`, ...style }} {...rest}>
+          {children}
+        </Tag>
+      );
+    }
+
+    // ── Animated counter ──────────────────────────────────────────────
+    function Counter({ to, suffix = "", decimals = 0, duration = 1400 }) {
+      const [ref, seen] = useReveal();
+      const [val, setVal] = useState(0);
+      useEffect(() => {
+        if (!seen) return;
+        const start = performance.now();
+        let raf;
+        const step = t => {
+          const p = Math.min(1, (t - start) / duration);
+          const e = 1 - Math.pow(1 - p, 3);
+          setVal(e * to);
+          if (p < 1) raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(raf);
+      }, [seen, to, duration]);
+      return <span ref={ref}>{decimals === 0 ? Math.round(val) : val.toFixed(decimals)}{suffix}</span>;
+    }
+
+    // ── Section head ──────────────────────────────────────────────────
+    function SectionHead({ eye, h, hItalic, lede, invert }) {
+      return (
+        <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 32px 56px" }}>
+          <Reveal style={{ display:"inline-flex", alignItems:"center", gap:10,
+            fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase",
+            color: invert ? "var(--leaf)" : "var(--leaf-deep)", marginBottom: 22 }}>
+            <Sprig size={18} color={invert ? "var(--leaf)" : "var(--leaf-deep)"} />
+            <span>{eye}</span>
+          </Reveal>
+          <Reveal as="h2" delay={60} style={{ fontFamily: "var(--serif)", fontSize: "clamp(40px,5vw,68px)", fontWeight: 500,
+            lineHeight: 1.05, letterSpacing: -0.01, margin: "0 0 26px", maxWidth: 940,
+            color: invert ? "var(--cream)" : "var(--ink)" }}>
+            {h}{hItalic && <em style={{ fontStyle:"italic", fontWeight:500, color: invert ? "var(--leaf)" : "var(--orange)" }}> {hItalic}</em>}
+          </Reveal>
+          {lede && <Reveal as="p" delay={120} style={{ fontSize: 18, lineHeight: 1.72, maxWidth: 680, margin: 0,
+            color: invert ? "rgba(242,231,195,0.72)" : "var(--brown)" }}>{lede}</Reveal>}
+        </div>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // HEADER
+    // ════════════════════════════════════════════════════════════════
+    function Header() {
+      const [active, setActive] = useState("top");
+      const [scrolled, setScrolled] = useState(false);
+      const navLinks = (S.nav && S.nav.links) || [];
+      const brand = S.brand || {};
+      const navCta = (S.nav && S.nav.cta) || { label: "Request a quote →", href: "#contact" };
+      useEffect(() => {
+        const ids = ["top", ...navLinks.map(l => l.id)];
+        const onScroll = () => {
+          setScrolled(window.scrollY > 12);
+          let cur = "top";
+          ids.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top - 120 <= 0) cur = id;
+          });
+          setActive(cur);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+
+      const link = (id, label) => (
+        <a key={id} href={`#${id}`} style={{ textDecoration: "none", padding: "8px 0", transition: "color 0.2s",
+          color: active === id ? "var(--orange)" : "var(--brown)", fontWeight: 500, fontSize: 14 }}>{label}</a>
+      );
+
+      return (
+        <header style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)", transition: "background 0.2s, box-shadow 0.2s",
+          boxShadow: scrolled ? "0 1px 0 var(--rule)" : "none",
+          background: scrolled ? "rgba(242,231,195,0.94)" : "var(--cream)" }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "14px 32px",
+            display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 32 }}>
+            <a href="#top" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", color: "var(--ink)" }}>
+              <img src={brand.logo || "ecologz-logo.png"} alt={brand.parent || "EcoLogz"} width="44" height="44"
+                style={{ display: "block", objectFit: "contain" }}
+                onError={e => { e.target.style.display='none'; }} />
+              <div>
+                <div style={{ fontFamily:"var(--serif)", fontWeight: 600, fontSize: 19, letterSpacing: -0.2 }}>{brand.name || "SecuriPad"}<span style={{ color: "var(--orange)" }}>{brand.tm || "™"}</span></div>
+                <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--brown-2)", letterSpacing: "0.12em", marginTop: 1 }}>{brand.sub || "BY ECOLOGZ"}</div>
+              </div>
+            </a>
+            <nav className="nav-links" style={{ display: "flex", justifyContent: "center", gap: 26 }}>
+              {navLinks.map(l => link(l.id, l.label))}
+            </nav>
+            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+              <a href={navCta.href} style={{ display: "inline-flex", alignItems: "center", gap: 6,
+                background: "var(--orange)", color: "white", padding: "12px 20px", borderRadius: 999,
+                fontSize: 14, fontWeight: 600, textDecoration: "none", border: 0, transition: "background 0.2s" }}>
+                {navCta.label}
+              </a>
+              <button className="hamburger" onClick={() => document.getElementById('mob').classList.add('open')}
+                style={{ display: "none", flexDirection: "column", gap: 5, background: "none", border: "none", padding: 4 }}>
+                <span style={{ display: "block", width: 22, height: 2, background: "var(--ink)", borderRadius: 2 }} />
+                <span style={{ display: "block", width: 22, height: 2, background: "var(--ink)", borderRadius: 2 }} />
+                <span style={{ display: "block", width: 22, height: 2, background: "var(--ink)", borderRadius: 2 }} />
+              </button>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // HERO
+    // ════════════════════════════════════════════════════════════════
+    function Hero() {
+      const [py, setPy] = useState(0);
+      useEffect(() => {
+        const onScroll = () => setPy(Math.min(80, window.scrollY * 0.18));
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+
+      const h = S.hero || {};
+      const items = h.marquee || [];
+
+      return (
+        <section id="top" style={{ position: "relative", padding: "16px 0 0" }}>
+          <div className="hero-grid" style={{ maxWidth: 1360, margin: "0 auto", padding: "56px 32px 72px",
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              <Reveal style={{ display: "flex", alignItems: "center", gap: 12,
+                fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em", color: "var(--leaf-deep)" }}>
+                <Sprig size={20} color="var(--leaf-deep)"/>
+                <span>{h.eyebrow}</span>
+              </Reveal>
+              <Reveal as="h1" delay={80} style={{ fontFamily: "var(--serif)", fontSize: "clamp(56px,7vw,108px)", fontWeight: 500,
+                lineHeight: 1.0, letterSpacing: -0.02, margin: "28px 0 28px", color: "var(--ink)" }}>
+                {h.headlineStart}<em style={{ fontStyle:"italic", fontWeight:500, color: "var(--orange)" }}>{h.headlineItalic}</em>{h.headlineEnd}
+              </Reveal>
+              <Reveal as="p" delay={160} style={{ fontSize: 19, lineHeight: 1.7, color: "var(--brown)",
+                margin: "0 0 36px", maxWidth: 560 }}>
+                {h.body}
+              </Reveal>
+              <Reveal delay={240} style={{ display: "flex", gap: 14, marginBottom: 48, flexWrap: "wrap" }}>
+                <a href={(h.ctaPrimary || {}).href} style={{ display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "var(--ink)", color: "var(--cream)", padding: "14px 26px", borderRadius: 999,
+                  fontSize: 14, fontWeight: 600, textDecoration: "none" }}>{(h.ctaPrimary || {}).label}</a>
+                <a href={(h.ctaSecondary || {}).href} style={{ display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "var(--leaf)", color: "var(--ink)", padding: "14px 26px", borderRadius: 999,
+                  fontSize: 14, fontWeight: 700, textDecoration: "none" }}>{(h.ctaSecondary || {}).label}</a>
+              </Reveal>
+              <Reveal delay={320} className="hero-stats" style={{ display: "grid",
+                gridTemplateColumns: `repeat(${(h.stats||[]).length},auto)`, gap: 56, paddingTop: 32,
+                borderTop: "1px solid var(--rule)", justifyContent: "start" }}>
+                {(h.stats || []).map((st, i) => (
+                  <div key={i}>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: 42, fontWeight: 500, color: "var(--ink)", lineHeight:1 }}>
+                      {st.counter != null
+                        ? <Counter to={st.counter} suffix={st.suffix || ""} />
+                        : (st.static || st.value)}
+                    </div>
+                    <div style={{ fontSize: 13, color: "var(--brown-2)", marginTop: 8 }}>{st.label}</div>
+                  </div>
+                ))}
+              </Reveal>
+            </div>
+            <Reveal className="hero-right" delay={120} style={{ position: "relative" }}>
+              <div style={{ position: "relative", aspectRatio: "4/5", borderRadius: 8, overflow: "hidden",
+                background: "var(--cream-3)", boxShadow: "0 40px 80px -30px rgba(42,28,16,0.42)" }}>
+                {h.isVideo ? (
+                  <video src={h.image} autoPlay muted loop playsInline
+                    style={{ width: "100%", height: "100%", objectFit: "cover",
+                      transform: `translateY(${-py}px) scale(1.08)`, transition: "transform 0.1s linear" }} />
+                ) : (
+                  <img src={h.image} alt={h.imageAlt || ""}
+                    style={{ width: "100%", height: "100%", objectFit: "cover",
+                      transform: `translateY(${-py}px) scale(1.08)`, transition: "transform 0.1s linear" }} />
+                )}
+                <div style={{ position: "absolute", left: 20, bottom: 20, background: "rgba(242,231,195,0.96)",
+                  padding: "12px 16px", borderRadius: 4, display: "flex", flexDirection: "column",
+                  backdropFilter: "blur(8px)", boxShadow: "0 6px 20px -8px rgba(42,28,16,0.38)" }}>
+                  <span style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", color: "var(--leaf-deep)" }}>
+                    {h.imageCaption}</span>
+                  <span style={{ fontSize: 14, color: "var(--ink)", marginTop: 4, fontFamily:"var(--serif)", fontStyle:"italic" }}>{h.imageCaptionSub}</span>
+                </div>
+              </div>
+              {/* Sprig decoration */}
+              <div style={{ position:"absolute", top: -16, left: -28, opacity: 0.4 }}>
+                <Sprig size={72} color="var(--leaf-deep)" />
+              </div>
+              <div style={{ position:"absolute", bottom: -24, right: -24, opacity: 0.5 }}>
+                <Wheat size={88} color="var(--brown-2)" />
+              </div>
+            </Reveal>
+          </div>
+          {/* Marquee */}
+          <div style={{ background: "var(--soil)", overflow: "hidden" }}>
+            <div style={{ display: "flex", gap: 56, animation: "mq 55s linear infinite",
+              whiteSpace: "nowrap", width: "max-content", padding: "18px 0" }}>
+              {[...items, ...items].map((t, i) => (
+                <span key={i} style={{ fontFamily: "var(--mono)", fontSize: 11,
+                  letterSpacing: "0.18em", color: "var(--cream)", display:"inline-flex", alignItems:"center", gap:14 }}>
+                  <span style={{ color:"var(--leaf)" }}>✦</span>
+                  {t.toUpperCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // CERTIFICATIONS BAND (B2B trust signals)
+    // ════════════════════════════════════════════════════════════════
+    function CertBand() {
+      const certs = S.certBand || [];
+      return (
+        <section style={{ background:"var(--paper)", borderTop:"1px solid var(--rule)", borderBottom:"1px solid var(--rule)" }}>
+          <div style={{ maxWidth:1360, margin:"0 auto", padding:"36px 32px",
+            display:"grid", gridTemplateColumns:`repeat(${certs.length},1fr)`, gap:32, alignItems:"center" }}
+            className="cert-grid">
+            {certs.map((c, i) => (
+              <Reveal key={c.label} delay={i*70} style={{ textAlign:"center", borderLeft: i===0?"none":"1px solid var(--rule)", padding:"4px 0" }}>
+                <div style={{ display:"flex", justifyContent:"center", marginBottom:10 }}>
+                  <Sprig size={22} color="var(--leaf-deep)"/>
+                </div>
+                <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.18em", color:"var(--ink)", fontWeight:600 }}>{c.label}</div>
+                <div style={{ fontSize:13, color:"var(--brown-2)", marginTop:6, fontStyle:"italic", fontFamily:"var(--serif)" }}>{c.sub}</div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // PRODUCT — tabbed explorer
+    // ════════════════════════════════════════════════════════════════
+    function Product() {
+      const p = S.product || {};
+      const tabs = p.tabs || [];
+      const [active, setActive] = useState(0);
+      const [paused, setPaused] = useState(false);
+      const [progress, setProgress] = useState(0);
+      const TAB_MS = 6000;
+      const cur = tabs[active] || {};
+
+      // Auto-advance + progress bar
+      useEffect(() => {
+        if (paused || tabs.length < 2) return;
+        const start = performance.now();
+        let raf;
+        const tick = (t) => {
+          const elapsed = t - start;
+          const p = Math.min(1, elapsed / TAB_MS);
+          setProgress(p);
+          if (p >= 1) {
+            setActive(a => (a + 1) % tabs.length);
+          } else {
+            raf = requestAnimationFrame(tick);
+          }
+        };
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+      }, [active, paused, tabs.length]);
+
+      // Reset progress when active changes
+      useEffect(() => { setProgress(0); }, [active]);
+
+      const onTabClick = (i) => {
+        setActive(i);
+        setProgress(0);
+      };
+
+      return (
+        <section id="product" style={{ padding: "130px 0 110px", background:"var(--cream)" }}>
+          <SectionHead eye={p.eyebrow} h={p.headline} hItalic={p.headlineItalic} lede={p.lede} />
+          <div className="product-carousel" style={{ maxWidth: 1320, margin: "0 auto", padding: "0 32px" }}
+            onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+            {/* Magazine spread: photo on left, copy on right */}
+            <div className="product-stage" style={{ display:"grid", gridTemplateColumns:"1.05fr 1fr",
+              gap:48, alignItems:"stretch", background:"var(--paper)", border:"1px solid var(--rule)",
+              borderRadius:8, overflow:"hidden", minHeight:520 }}>
+              {/* Photo */}
+              <div key={cur.k + "-img"} style={{ position:"relative", overflow:"hidden",
+                background:"var(--cream-3)", animation:"fadeIn 0.6s ease" }}>
+                {cur.isVideo ? (
+                  <video src={cur.img} autoPlay muted loop playsInline
+                    style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+                ) : (
+                  <img src={cur.img} alt={cur.t}
+                    style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+                )}
+                <div style={{ position:"absolute", left:18, top:18, background:"rgba(31,20,10,0.88)",
+                  color:"var(--cream)", padding:"8px 12px", borderRadius:4,
+                  fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.16em" }}>{cur.tag}</div>
+              </div>
+              {/* Copy */}
+              <div key={cur.k + "-c"} style={{ padding:"56px 56px 48px",
+                display:"flex", flexDirection:"column", justifyContent:"center", animation:"fadeIn 0.6s ease" }}>
+                <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em",
+                  color:"var(--leaf-deep)", display:"flex", alignItems:"center", gap:10, marginBottom:18 }}>
+                  <Sprig size={16} color="var(--leaf-deep)"/>
+                  <span>0{active+1} OF 0{tabs.length}</span>
+                </div>
+                <h3 style={{ fontFamily:"var(--serif)", fontSize:"clamp(32px,3vw,48px)", fontWeight:500,
+                  fontStyle:"italic", margin:"0 0 18px", lineHeight:1.1, color:"var(--ink)" }}>{cur.t}</h3>
+                <p style={{ fontFamily:"var(--serif)", fontSize:18, fontStyle:"italic", color:"var(--brown)",
+                  margin:"0 0 22px", lineHeight:1.5, maxWidth:480 }}>{cur.lede}</p>
+                <p style={{ fontSize:16, color:"var(--brown)", margin:0, lineHeight:1.75, maxWidth:480 }}>{cur.d}</p>
+              </div>
+            </div>
+
+            {/* Carousel nav strip below */}
+            <div className="product-nav" style={{ display:"grid", gridTemplateColumns:`repeat(${tabs.length},1fr)`,
+              gap:0, marginTop:14, borderTop:"1px solid var(--rule)" }}>
+              {tabs.map((tab, i) => (
+                <button key={tab.k} onClick={() => onTabClick(i)} style={{
+                  position:"relative", textAlign:"left", padding:"22px 24px",
+                  border:"none", borderRight: i < tabs.length - 1 ? "1px solid var(--rule)" : "none",
+                  background:"transparent", cursor:"pointer", fontFamily:"var(--sans)",
+                  transition:"background 0.25s ease",
+                  color: i === active ? "var(--ink)" : "var(--brown-2)" }}
+                  onMouseOver={e => { if (i !== active) e.currentTarget.style.background = "rgba(0,0,0,0.025)"; }}
+                  onMouseOut={e => { e.currentTarget.style.background = "transparent"; }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em",
+                    color: i === active ? "var(--leaf-deep)" : "var(--brown-3)" }}>0{i+1}</div>
+                  <div style={{ fontFamily:"var(--serif)", fontWeight:500, fontSize:16, marginTop:8, lineHeight:1.25 }}>{tab.t}</div>
+                  {/* progress bar on active */}
+                  <div style={{ position:"absolute", left:0, top:-1, height:2,
+                    width: i === active ? `${progress * 100}%` : 0,
+                    background:"var(--leaf)", transition:"width 0.05s linear" }}/>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // SCIENCE — editorial photo / video cards (placeholders ready for assets)
+    // ════════════════════════════════════════════════════════════════
+    function MediaSlot({ n, title, body, asset, fallbackImg, kicker, isVideo }) {
+      const [ref, seen] = useReveal();
+      return (
+        <div ref={ref} style={{
+          background:"var(--paper)", border:"1px solid var(--rule)", borderRadius:6, overflow:"hidden",
+          display:"flex", flexDirection:"column",
+          opacity: seen?1:0, transform: seen?"none":"translateY(28px)",
+          transition:"opacity 0.7s cubic-bezier(0.2,0.7,0.2,1), transform 0.7s cubic-bezier(0.2,0.7,0.2,1)" }}>
+          <div style={{ position:"relative", aspectRatio:"4/5", background:"var(--cream-3)", overflow:"hidden" }}>
+            {fallbackImg && isVideo ? (
+              <video src={fallbackImg} autoPlay muted loop playsInline
+                style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+            ) : fallbackImg ? (
+              <img src={fallbackImg} alt={title}
+                style={{ width:"100%", height:"100%", objectFit:"cover", filter:"saturate(0.92)" }}/>
+            ) : (
+              <div style={{ width:"100%", height:"100%", display:"flex",
+                alignItems:"center", justifyContent:"center", flexDirection:"column", gap:14,
+                background:"repeating-linear-gradient(45deg,var(--cream-3) 0 12px,var(--cream-2) 12px 24px)" }}>
+                <Wheat size={56} color="var(--brown-2)"/>
+                <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--brown)" }}>
+                  {asset || "ASSET PLACEHOLDER"}
+                </div>
+              </div>
+            )}
+            <div style={{ position:"absolute", top:14, left:14, background:"rgba(31,20,10,0.88)",
+              color:"var(--cream)", padding:"6px 12px", borderRadius:4,
+              fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.16em" }}>{kicker}</div>
+            <div style={{ position:"absolute", top:14, right:14, width:42, height:42, borderRadius:"50%",
+              background:"var(--leaf)", color:"var(--ink)", fontFamily:"var(--serif)", fontStyle:"italic",
+              fontWeight:600, fontSize:18, display:"flex", alignItems:"center", justifyContent:"center",
+              boxShadow:"0 4px 12px -2px rgba(0,0,0,0.25)" }}>{n}</div>
+          </div>
+          <div style={{ padding:"28px 26px 30px" }}>
+            <div style={{ fontFamily:"var(--serif)", fontSize:26, fontWeight:500, lineHeight:1.2, color:"var(--ink)" }}>
+              {title}
+            </div>
+            <p style={{ fontSize:15, lineHeight:1.72, color:"var(--brown)", marginTop:14, marginBottom:0 }}>{body}</p>
+          </div>
+        </div>
+      );
+    }
+
+    function Science() {
+      const sc = S.science || {};
+      const cards = sc.cards || [];
+      const process = sc.process || [];
+      return (
+        <section id="science" style={{ padding:"130px 0 110px", background:"var(--cream-2)" }}>
+          <SectionHead eye={sc.eyebrow} h={sc.headline} hItalic={sc.headlineItalic} lede={sc.lede} />
+          <div className="sci-grid" style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px",
+            display:"grid", gridTemplateColumns:`repeat(${cards.length || 3},1fr)`, gap:22 }}>
+            {cards.map(c => (
+              <MediaSlot key={c.n} n={c.n} kicker={c.kicker} asset={c.asset}
+                title={c.title} body={c.body} fallbackImg={c.fallbackImg} isVideo={c.isVideo} />
+            ))}
+          </div>
+
+          {/* Process strip — three step explanation */}
+          <div style={{ maxWidth:1360, margin:"60px auto 0", padding:"0 32px" }}>
+            <div style={{ display:"flex", flexWrap:"wrap", alignItems:"stretch", gap:0,
+              background:"var(--ink)", color:"var(--cream)", borderRadius:8, overflow:"hidden" }}>
+              {process.map(([k, t, s], i) => (
+                <Reveal key={k} delay={i*100} style={{ flex:"1 1 0", minWidth:240, padding:"30px 28px",
+                  borderRight: i < process.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em", color:"var(--leaf)" }}>{k}</div>
+                  <div style={{ fontFamily:"var(--serif)", fontSize:24, fontWeight:500, marginTop:10, lineHeight:1.2 }}>{t}</div>
+                  <div style={{ fontSize:14, lineHeight:1.65, color:"rgba(242,231,195,0.7)", marginTop:12 }}>{s}</div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // RESULTS — animated comparison charts
+    // ════════════════════════════════════════════════════════════════
+    function ResultsChart({ ds, title, sub }) {
+      const [ref, seen] = useReveal();
+      const [progress, setProgress] = useState(0);
+      useEffect(() => {
+        if (!seen) return;
+        let p = 0;
+        const id = setInterval(() => { p += 0.045; setProgress(Math.min(1,p)); if(p>=1) clearInterval(id); }, 28);
+        return () => clearInterval(id);
+      }, [seen]);
+
+      const W=800, H=320, PL=56, PR=28, PT=28, PB=44;
+      const xMax=W-PR, yMax=H-PB;
+      const all=[...ds.sec,...ds.conv];
+      const maxV=Math.max(...all,1)*1.1;
+      const xS=(i)=>PL+(i/(ds.sec.length-1))*(xMax-PL);
+      const yS=(v)=>PT+(1-v/maxV)*(yMax-PT);
+      const labels=ds.sec.map((_,i)=>`W${i+1}`);
+      const visN=Math.max(2,Math.ceil(progress*ds.sec.length));
+      const mkPath=(a)=>a.slice(0,visN).map((v,i)=>`${i===0?"M":"L"} ${xS(i)} ${yS(v)}`).join(" ");
+
+      return (
+        <div ref={ref} style={{ background:"var(--paper)", borderRadius:8, padding:32, border:"1px solid var(--rule)" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", marginBottom:18, flexWrap:"wrap", gap:12 }}>
+            <div>
+              <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--leaf-deep)" }}>FIG. 3 · {title.toUpperCase()}</div>
+              <div style={{ fontFamily:"var(--serif)", fontSize:26, fontWeight:500, marginTop:8, color:"var(--ink)" }}>{sub}</div>
+            </div>
+            <div style={{ display:"flex", gap:18, fontFamily:"var(--mono)", fontSize:11, color:"var(--brown)" }}>
+              <span><span style={{ display:"inline-block", width:10, height:10, marginRight:8, borderRadius:2, background:"var(--orange)" }}/>SecuriPad</span>
+              <span><span style={{ display:"inline-block", width:10, height:10, marginRight:8, borderRadius:2, background:"var(--rule-2)" }}/>Conventional sawdust</span>
+            </div>
+          </div>
+          <svg viewBox={`0 0 ${W} ${H}`} style={{ width:"100%", height:"auto", display:"block" }}>
+            {[0,0.25,0.5,0.75,1].map(g => {
+              const v=g*maxV;
+              return (<g key={g}>
+                <line x1={PL} x2={xMax} y1={yS(v)} y2={yS(v)} stroke="var(--rule)" strokeDasharray="2 5"/>
+                <text x={PL-10} y={yS(v)+4} fontSize="11" textAnchor="end" fontFamily="var(--mono)" fill="var(--brown-2)">
+                  {ds.unit==="%"?v.toFixed(1)+"%":ds.unit==="g"?Math.round(v):v.toFixed(0)}
+                </text>
+              </g>);
+            })}
+            {ds.conv.slice(0,visN).map((v,i)=>(
+              <rect key={`c${i}`} x={xS(i)-11} y={yS(v)} width={18} height={yMax-yS(v)} fill="var(--rule-2)" rx="2" opacity="0.9"/>
+            ))}
+            {ds.sec.slice(0,visN).map((v,i)=>(
+              <rect key={`s${i}`} x={xS(i)+7} y={yS(v)} width={18} height={yMax-yS(v)} fill="var(--orange)" rx="2"/>
+            ))}
+            <path d={mkPath(ds.conv)} stroke="var(--brown-2)" strokeWidth="1.4" fill="none" strokeDasharray="4 3" opacity="0.7"/>
+            <path d={mkPath(ds.sec)} stroke="var(--orange-deep)" strokeWidth="2.4" fill="none"/>
+            {progress>=1 && <>
+              <circle cx={xS(ds.sec.length-1)} cy={yS(ds.sec[ds.sec.length-1])} r="5" fill="var(--orange-deep)"/>
+              <circle cx={xS(ds.conv.length-1)} cy={yS(ds.conv[ds.conv.length-1])} r="4" fill="var(--brown-2)" opacity="0.7"/>
+            </>}
+            {labels.map((l,i)=>(
+              <text key={l} x={xS(i)} y={H-16} fontSize="11" textAnchor="middle" fontFamily="var(--mono)" fill="var(--brown-2)">{l}</text>
+            ))}
+          </svg>
+        </div>
+      );
+    }
+
+    function Results() {
+      const [tab, setTab] = useState(0);
+      const tabs = [
+        { k:"health",      t:"Chicken health",    sub:"Mortality and footpad lesions",  unit:"% of flock" },
+        { k:"weight",      t:"Chicken weight",    sub:"Average daily gain (ADG)",       unit:"g per day" },
+        { k:"antibiotics", t:"Antibiotic use",    sub:"Treatments per cycle",           unit:"courses per cycle" },
+      ];
+      const data = {
+        health:      { sec:[0.4,0.6,0.9,1.1,1.4,1.7,1.9], conv:[0.6,1.1,1.7,2.4,3.1,3.9,4.6], lower:true,  unit:"%", format:(v)=>v.toFixed(1)+"%" },
+        weight:      { sec:[22,38,55,68,76,82,86],          conv:[21,36,50,60,67,72,75],         lower:false, unit:"g", format:(v)=>Math.round(v)+" g/d" },
+        antibiotics: { sec:[0,0,0,0,0,0,0],                 conv:[0,0,1,1,2,2,2],               lower:true,  unit:"ct", format:(v)=>v.toFixed(0) },
+      };
+      const cur = tabs[tab];
+      const ds = data[cur.k];
+
+      return (
+        <section id="results" style={{ padding: "130px 0 110px", background: "var(--paper)" }}>
+          <SectionHead eye="§ 03 · FIELD RESULTS" h="Healthier flocks." hItalic="Less antibiotics."
+            lede="Cooperative integrators measure SecuriPad against their previous bedding across the same houses, the same flocks, the same diet. Early reads from production trials are below. Full datasets are available on request." />
+          <div style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px" }}>
+            <div className="rs-tabs" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14, marginBottom:28 }}>
+              {tabs.map((t,i) => (
+                <button key={t.k} onClick={()=>setTab(i)} style={{
+                  textAlign:"left", border:"1px solid", padding:"22px 24px", borderRadius:8,
+                  cursor:"pointer", fontFamily:"var(--sans)", transition:"all 0.25s ease",
+                  background: i===tab?"var(--ink)":"var(--cream)",
+                  color: i===tab?"var(--cream)":"var(--ink)",
+                  borderColor: i===tab?"var(--ink)":"var(--rule)" }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em",
+                    color: i===tab?"var(--leaf)":"var(--leaf-deep)" }}>METRIC 0{i+1}</div>
+                  <div style={{ fontFamily:"var(--serif)", fontWeight:500, fontSize:22, marginTop:8, lineHeight:1.2 }}>{t.t}</div>
+                  <div style={{ fontSize:13, marginTop:6, color: i===tab?"rgba(242,231,195,0.7)":"var(--brown-2)" }}>{t.sub}</div>
+                </button>
+              ))}
+            </div>
+            <ResultsChart key={cur.k} ds={ds} title={cur.t} sub={cur.sub} />
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:18, marginTop:22 }}>
+              {[
+                ["SecuriPad final week", <Counter to={ds.sec[ds.sec.length-1]} decimals={cur.k==="health"?1:0} suffix={cur.k==="health"?"%":cur.k==="weight"?" g/d":" ct"}/>, "var(--orange)"],
+                ["Conventional final week", <Counter to={ds.conv[ds.conv.length-1]} decimals={cur.k==="health"?1:0} suffix={cur.k==="health"?"%":cur.k==="weight"?" g/d":" ct"}/>, "var(--ink)"],
+                ["Direction", ds.lower?"↓ Lower is better":"↑ Higher is better", "var(--leaf-deep)"],
+              ].map(([k, v, c]) => (
+                <div key={k} style={{ background:"var(--cream)", border:"1px solid var(--rule)", borderRadius:8, padding:"22px 26px" }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--brown-2)" }}>{k}</div>
+                  <div style={{ fontFamily:"var(--serif)", fontSize:30, fontWeight:500, marginTop:8, color:c }}>{v}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop:22, fontSize:13, color:"var(--brown)", lineHeight:1.65,
+              padding:"14px 18px", background:"var(--cream)", borderRadius:6, border:"1px dashed var(--rule-2)" }}>
+              <span style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--orange)" }}>NOTE </span>
+              Charts shown above are illustrative placeholders. Final figures will be supplied by EcoLogz from cooperative trial reports once veterinary sign off is complete.
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // SUSTAINABILITY
+    // ════════════════════════════════════════════════════════════════
+    function RecycleGlyph() {
+      return (
+        <svg viewBox="0 0 160 110" style={{ width:"100%", height:"100%" }}>
+          <g transform="translate(80 55)">
+            <g style={{ transformOrigin:"center", animation:"spin-slow 18s linear infinite" }}>
+              {[0,120,240].map(deg => (
+                <g key={deg} transform={`rotate(${deg})`}>
+                  <path d="M 0 -34 A 34 34 0 0 1 29 17" stroke="var(--orange)" strokeWidth="6" fill="none" strokeLinecap="round"/>
+                  <polygon points="29,17 36,8 22,8" fill="var(--orange)"/>
+                </g>
+              ))}
+            </g>
+          </g>
+          <text x="80" y="106" fontSize="9" textAnchor="middle" fontFamily="var(--mono)" fill="var(--mute)" letterSpacing="0.14em">CIRCULAR INPUT</text>
+        </svg>
+      );
+    }
+
+    function CreditGlyph() {
+      return (
+        <svg viewBox="0 0 160 110" style={{ width:"100%", height:"100%" }}>
+          {[0,1,2].map(i => (
+            <g key={i} transform={`translate(${30+i*6} ${20+i*12})`}>
+              <rect width="100" height="38" rx="6" fill={i===0?"var(--orange)":i===1?"var(--orange-deep)":"oklch(0.45 0.16 38)"} opacity={0.55+i*0.18}>
+                <animate attributeName="opacity" values={`${0.4+i*0.18};${0.7+i*0.1};${0.4+i*0.18}`} dur={`${3+i*0.5}s`} repeatCount="indefinite"/>
+              </rect>
+              <text x="10" y="16" fontSize="8" fontFamily="var(--mono)" fill="white" letterSpacing="0.12em">CARBON CREDIT</text>
+              <text x="10" y="30" fontSize="14" fontFamily="var(--mono)" fontWeight="600" fill="white">{(2.4-i*0.3).toFixed(1)}t CO₂e</text>
+            </g>
+          ))}
+          <text x="80" y="106" fontSize="9" textAnchor="middle" fontFamily="var(--mono)" fill="var(--mute)" letterSpacing="0.14em">VERIFIED · TRADABLE</text>
+        </svg>
+      );
+    }
+
+    function Co2Glyph() {
+      return (
+        <svg viewBox="0 0 160 110" style={{ width:"100%", height:"100%" }}>
+          <rect x="20" y="86" width="120" height="6" rx="3" fill="oklch(0.7 0.13 145)" opacity="0.55"/>
+          {Array.from({length:8}).map((_,i) => {
+            const x=28+i*14, dur=2.2+(i%4)*0.5, delay=(i%5)*0.4;
+            return (
+              <g key={i}>
+                <circle cx={x} cy="0" r="6" fill="var(--orange)" opacity="0.78">
+                  <animate attributeName="cy" values="-10;90" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0.85;0" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite"/>
+                </circle>
+                <text x={x} y="2" fontSize="7" textAnchor="middle" fontFamily="var(--mono)" fontWeight="600" fill="white">
+                  CO₂
+                  <animate attributeName="y" values="-8;92" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0.9;0" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite"/>
+                </text>
+              </g>
+            );
+          })}
+          <text x="80" y="106" fontSize="9" textAnchor="middle" fontFamily="var(--mono)" fill="var(--mute)" letterSpacing="0.14em">EMISSIONS DOWN</text>
+        </svg>
+      );
+    }
+
+    function SusCard({ kicker, title, body, stat, statLabel, children }) {
+      const [ref, seen] = useReveal();
+      return (
+        <div ref={ref} style={{ background:"var(--paper)", borderRadius:8, padding:30,
+          border:"1px solid var(--rule)", display:"flex", flexDirection:"column",
+          opacity: seen?1:0, transform: seen?"none":"translateY(24px)",
+          transition:"opacity 0.7s cubic-bezier(0.2,0.7,0.2,1), transform 0.7s cubic-bezier(0.2,0.7,0.2,1)" }}>
+          <div style={{ aspectRatio:"16/11", borderRadius:6, background:"var(--cream)",
+            marginBottom:24, padding:18, display:"flex", alignItems:"center",
+            justifyContent:"center", overflow:"hidden", border:"1px solid var(--rule)" }}>{children}</div>
+          <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.2em", color:"var(--leaf-deep)" }}>{kicker}</div>
+          <div style={{ fontFamily:"var(--serif)", fontSize:24, fontWeight:500, marginTop:12, lineHeight:1.2, color:"var(--ink)" }}>{title}</div>
+          <p style={{ fontSize:14, lineHeight:1.72, color:"var(--brown)", marginTop:12, marginBottom:22, flex:1 }}>{body}</p>
+          <div style={{ paddingTop:18, borderTop:"1px solid var(--rule)" }}>
+            <div style={{ fontFamily:"var(--serif)", fontSize:34, fontWeight:500, color:"var(--orange)", lineHeight:1 }}>{stat}</div>
+            <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.16em", color:"var(--brown-2)", marginTop:8 }}>{statLabel}</div>
+          </div>
+        </div>
+      );
+    }
+
+    function Sustainability() {
+      const su = S.sustainability || {};
+      const cards = su.cards || [];
+      const loop = su.loop || [];
+      const glyphs = { RecycleGlyph: <RecycleGlyph/>, CreditGlyph: <CreditGlyph/>, Co2Glyph: <Co2Glyph/> };
+      return (
+        <section id="sustainability" style={{ padding:"130px 0 110px", background:"var(--cream)" }}>
+          <SectionHead eye={su.eyebrow} h={su.headline} hItalic={su.headlineItalic} lede={su.lede} />
+          <div style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px" }}>
+            <div className="su-grid" style={{ display:"grid", gridTemplateColumns:`repeat(${cards.length || 3},1fr)`, gap:22 }}>
+              {cards.map(c => (
+                <SusCard key={c.kicker} kicker={c.kicker} title={c.title} body={c.body}
+                  stat={c.stat} statLabel={c.statLabel}>
+                  {glyphs[c.glyph] || null}
+                </SusCard>
+              ))}
+            </div>
+            {/* Flow diagram */}
+            <div style={{ marginTop:60, padding:"40px 36px", borderRadius:8,
+              background:"var(--ink)", color:"var(--cream)" }}>
+              <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em",
+                color:"var(--leaf)", marginBottom:26 }}>§ THE LOOP</div>
+              <div className="su-flow" style={{ display:"flex", alignItems:"stretch", gap:6, flexWrap:"wrap" }}>
+                {loop.map(([t, sub], i, arr) => (
+                  <React.Fragment key={t}>
+                    <Reveal delay={i*80} style={{ flex:"1 1 0", minWidth:140, padding:"16px 18px",
+                      background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:6 }}>
+                      <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--leaf)" }}>{t}</div>
+                      <div style={{ fontFamily:"var(--serif)", fontSize:15, color:"rgba(242,231,195,0.85)", marginTop:8, fontStyle:"italic" }}>{sub}</div>
+                    </Reveal>
+                    {i < arr.length-1 && <div style={{ color:"var(--leaf)", fontFamily:"var(--mono)",
+                      fontSize:18, fontWeight:600, alignSelf:"center", padding:"0 4px" }}>→</div>}
+                  </React.Fragment>
+                ))}
+              </div>
+              {su.note && <div style={{ marginTop:22, paddingTop:16, borderTop:"1px solid rgba(255,255,255,0.1)",
+                fontSize:12, color:"rgba(248,237,216,0.5)", lineHeight:1.6 }}>
+                {su.note}
+              </div>}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // FARMS
+    // ════════════════════════════════════════════════════════════════
+    function Farms() {
+      const f = S.farms || {};
+      const farms = f.items || [];
+      const [hover, setHover] = useState(null);
+      return (
+        <section id="farms" style={{ padding:"130px 0 110px", background:"var(--paper)" }}>
+          <SectionHead eye={f.eyebrow} h={f.headline} hItalic={f.headlineItalic} lede={f.lede} />
+          <div style={{ maxWidth:1320, margin:"0 auto", padding:"0 32px" }}>
+            <div className="farms-grid" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:18 }}>
+              {farms.map((f,i) => (
+                <Reveal key={f.name} delay={i*50} style={{ background:"var(--cream)", borderRadius:6,
+                  overflow:"hidden", cursor:"pointer", boxShadow:"0 1px 6px -2px rgba(42,28,16,0.12)",
+                  transform: hover===i?"translateY(-4px)":"none",
+                  transition:"transform 0.3s cubic-bezier(0.2,0.7,0.2,1)" }}
+                  onMouseEnter={()=>setHover(i)} onMouseLeave={()=>setHover(null)}>
+                  <div style={{ position:"relative", aspectRatio:"4/3", overflow:"hidden", background:"var(--cream-3)" }}>
+                    <img src={f.img} alt={f.name} style={{ width:"100%", height:"100%", objectFit:"cover",
+                      transform: hover===i?"scale(1.06)":"scale(1)", transition:"transform 0.5s ease" }}/>
+                    <div style={{ position:"absolute", inset:0,
+                      background:"linear-gradient(180deg,transparent 50%,rgba(31,20,10,0.65))",
+                      display:"flex", alignItems:"flex-end", padding:14,
+                      opacity: hover===i?1:0, transition:"opacity 0.25s ease" }}>
+                      <span style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--leaf)" }}>VIEW · CASE</span>
+                    </div>
+                  </div>
+                  <div style={{ padding:"18px 18px 20px" }}>
+                    <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.16em", color:"var(--leaf-deep)" }}>
+                      {f.type.toUpperCase()} · {f.loc.toUpperCase()}</div>
+                    <div style={{ fontFamily:"var(--serif)", fontSize:20, fontWeight:500, marginTop:6, color:"var(--ink)" }}>{f.name}</div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // TESTIMONIAL / FROM THE FIELD (placeholder copy until real quotes arrive)
+    // ════════════════════════════════════════════════════════════════
+    function Testimonial() {
+      const items = [
+        {
+          quote: "We saw drier litter from week one. The flock was visibly calmer, and our vet cut routine antibiotic prescriptions on the next cycle.",
+          who: "Yossi Ben Ami",
+          role: "Farm Manager, Double K Farm, Moshav Sharona",
+          asset: IMG.farmDoubleK1,
+        },
+        {
+          quote: "Imported sawdust supply was always our weak link. SecuriPad gave us a year round local source with consistent quality across batches.",
+          who: "Operations Lead",
+          role: "Cooperative Integrator, Hefer Valley",
+          asset: IMG.farmGivatHaim,
+        },
+        {
+          quote: "On the juvenile chicks we noticed the difference immediately. Less footpad lesions, less mortality in the first week.",
+          who: "Veterinary Consultant",
+          role: "Broiler Programme, Jezreel Valley",
+          asset: IMG.farmNahalal,
+        },
+      ];
+      const [i, setI] = useState(0);
+      const cur = items[i];
+      return (
+        <section style={{ padding:"130px 0 110px", background:"var(--cream-2)" }}>
+          <div style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px",
+            display:"grid", gridTemplateColumns:"1fr 1.1fr", gap:64, alignItems:"center" }}
+            className="testi-grid">
+            <Reveal style={{ position:"relative", aspectRatio:"1/1", borderRadius:6, overflow:"hidden",
+              boxShadow:"0 30px 60px -30px rgba(31,20,10,0.32)" }}>
+              <img key={cur.asset} src={cur.asset} alt={cur.who}
+                style={{ width:"100%", height:"100%", objectFit:"cover", animation:"fadeIn 0.6s ease" }}/>
+              <div style={{ position:"absolute", left:18, top:18, background:"var(--leaf)",
+                color:"var(--ink)", padding:"6px 14px", borderRadius:999,
+                fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", fontWeight:600 }}>FROM THE FIELD</div>
+            </Reveal>
+            <div>
+              <Reveal style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em", color:"var(--leaf-deep)",
+                display:"flex", alignItems:"center", gap:10, marginBottom:18 }}>
+                <Sprig size={18} color="var(--leaf-deep)"/>
+                <span>§ WHAT THEY SAY</span>
+              </Reveal>
+              <svg width="56" height="40" viewBox="0 0 56 40" style={{ marginBottom:14 }}>
+                <text x="0" y="36" fontFamily="var(--serif)" fontSize="80" fontStyle="italic" fontWeight="500" fill="var(--orange)">"</text>
+              </svg>
+              <Reveal as="blockquote" key={cur.quote} style={{ fontFamily:"var(--serif)",
+                fontSize:"clamp(28px,3vw,40px)", fontWeight:400, fontStyle:"italic",
+                lineHeight:1.25, color:"var(--ink)", margin:"0 0 28px" }}>
+                {cur.quote}
+              </Reveal>
+              <div key={cur.who} style={{ display:"flex", flexDirection:"column", gap:4, marginBottom:32 }}>
+                <div style={{ fontFamily:"var(--serif)", fontSize:18, fontWeight:600, color:"var(--ink)" }}>{cur.who}</div>
+                <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.16em", color:"var(--brown-2)" }}>{cur.role.toUpperCase()}</div>
+              </div>
+              <div style={{ display:"flex", gap:12, alignItems:"center" }}>
+                {items.map((_, idx) => (
+                  <button key={idx} onClick={() => setI(idx)} aria-label={`Show testimonial ${idx+1}`}
+                    style={{ width: idx===i?28:10, height:10, borderRadius:5, border:"none",
+                      background: idx===i?"var(--ink)":"var(--rule-2)", cursor:"pointer", padding:0,
+                      transition:"all 0.3s ease" }}/>
+                ))}
+              </div>
+              <div style={{ fontSize:12, color:"var(--brown-2)", fontStyle:"italic", marginTop:24, maxWidth:480 }}>
+                Quotes shown above are illustrative placeholders. Real testimonials will be supplied by EcoLogz once cooperative trial sign offs are complete.
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // CONTACT — sends to daniel@compostor.co.il
+    // ════════════════════════════════════════════════════════════════
+    function Contact() {
+      const c = S.contact || {};
+      const fcfg = c.form || {};
+      const [submitted, setSubmitted] = useState(false);
+      const [sending, setSending] = useState(false);
+      const [form, setForm] = useState({
+        org:"", name:"", email:"", phone:"",
+        houses: fcfg.defaultHouses || "60",
+        format: fcfg.defaultFormat || "Big bag (FIBC)",
+        country: fcfg.defaultCountry || "Israel",
+        message:"",
+      });
+      const set = k => e => setForm({ ...form, [k]: e.target.value });
+
+      const handleSubmit = async e => {
+        e.preventDefault();
+        setSending(true);
+        const data = new FormData();
+        Object.entries(form).forEach(([k,v]) => data.append(k,v));
+        data.append('_subject', c.emailSubject || 'New SecuriPad Quote Request');
+        data.append('_captcha','false');
+        data.append('_template','table');
+        try {
+          await fetch(c.formEndpoint || 'https://formsubmit.co/ajax/daniel@compostor.co.il', {
+            method:'POST', body:data, headers:{ Accept:'application/json' }
+          });
+        } catch(_) {}
+        setSending(false);
+        setSubmitted(true);
+      };
+
+      const inp = { fontFamily:"var(--sans)", fontSize:14, padding:"14px 16px",
+        background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.12)",
+        color:"var(--cream)", outline:"none", borderRadius:6, width:"100%" };
+      const lbl = { fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em",
+        color:"rgba(242,231,195,0.65)", textTransform:"uppercase", display:"block", marginBottom:8 };
+
+      const Field = ({label, ...p}) => (
+        <label style={{ display:"flex", flexDirection:"column" }}>
+          <span style={lbl}>{label}</span>
+          <input {...p} style={{...inp, resize:"vertical"}} />
+        </label>
+      );
+      const Sel = ({label, value, onChange, options}) => (
+        <label style={{ display:"flex", flexDirection:"column" }}>
+          <span style={lbl}>{label}</span>
+          <select value={value} onChange={onChange} style={inp}>
+            {options.map(o=><option key={o}>{o}</option>)}
+          </select>
+        </label>
+      );
+
+      const renderBlockValue = (b) => {
+        if (b.kind === "phone") {
+          return <a href={b.href} style={{ fontFamily:"var(--serif)", fontSize:24, fontWeight:500, marginTop:6, color:"var(--cream)", textDecoration:"none", display:"block" }}>{b.value}</a>;
+        }
+        if (b.kind === "email") {
+          return <a href={b.href} style={{ fontFamily:"var(--serif)", fontSize:18, fontStyle:"italic", marginTop:6, color:"var(--cream)", textDecoration:"none", display:"block" }}>{b.value}</a>;
+        }
+        return <div style={{ fontFamily:"var(--serif)", fontSize:24, fontWeight:500, marginTop:6, color:"var(--cream)" }}>{b.value}</div>;
+      };
+
+      return (
+        <section id="contact" style={{ padding:"130px 0 90px", background:"var(--soil)", color:"var(--cream)" }}>
+          <SectionHead eye={c.eyebrow} h={c.headline} hItalic={c.headlineItalic} lede={c.lede} invert />
+          <div className="contact-grid" style={{ maxWidth:1320, margin:"0 auto", padding:"0 32px",
+            display:"grid", gridTemplateColumns:"1fr 1.1fr", gap:56, alignItems:"stretch" }}>
+            <div>
+              <div className="contact-blocks" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:28 }}>
+                {(c.blocks || []).map(b => (
+                  <div key={b.k}>
+                    <div style={{ fontFamily:"var(--mono)", fontSize:10, color:"var(--leaf)", letterSpacing:"0.18em" }}>{b.k}</div>
+                    {renderBlockValue(b)}
+                    {b.sub && <div style={{ fontSize:13, color:"rgba(242,231,195,0.6)", marginTop:6 }}>{b.sub}</div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ background:"rgba(255,255,255,0.04)", padding:36,
+              border:"1px solid rgba(255,255,255,0.10)", borderRadius:8 }}>
+              {submitted ? (
+                <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", minHeight:360 }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.18em", color:"var(--leaf)" }}>{fcfg.successKicker}</div>
+                  <div style={{ fontFamily:"var(--serif)", fontSize:38, fontWeight:500, lineHeight:1.2, marginTop:16, maxWidth:440, fontStyle:"italic" }}>
+                    {fcfg.successMessage}
+                  </div>
+                  <button onClick={()=>setSubmitted(false)} style={{ marginTop:28, alignSelf:"flex-start",
+                    background:"var(--leaf)", color:"var(--ink)", padding:"12px 24px", borderRadius:999,
+                    fontSize:14, fontWeight:700, border:"none", cursor:"pointer" }}>
+                    {fcfg.successCta}
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:14 }}>
+                  <div className="frow" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14 }}>
+                    <Field label={fcfg.orgLabel} name="cooperative" value={form.org} onChange={set("org")} required placeholder={fcfg.orgPlaceholder} />
+                    <Field label={fcfg.nameLabel} name="name" value={form.name} onChange={set("name")} required placeholder={fcfg.namePlaceholder} />
+                  </div>
+                  <div className="frow" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14 }}>
+                    <Field label={fcfg.emailLabel} type="email" name="email" value={form.email} onChange={set("email")} required placeholder={fcfg.emailPlaceholder} />
+                    <Field label={fcfg.phoneLabel} name="phone" value={form.phone} onChange={set("phone")} placeholder={fcfg.phonePlaceholder} />
+                  </div>
+                  <div className="frow3" style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14 }}>
+                    <Field label={fcfg.housesLabel} type="number" name="houses" min="1" value={form.houses} onChange={set("houses")} />
+                    <Sel label={fcfg.formatLabel} value={form.format} onChange={set("format")} options={fcfg.formats || []} />
+                    <Sel label={fcfg.countryLabel} value={form.country} onChange={set("country")} options={fcfg.countries || []} />
+                  </div>
+                  <label style={{ display:"flex", flexDirection:"column" }}>
+                    <span style={lbl}>{fcfg.notesLabel}</span>
+                    <textarea name="message" value={form.message} onChange={set("message")} rows={4}
+                      style={{...inp, resize:"vertical"}} placeholder={fcfg.notesPlaceholder} />
+                  </label>
+                  <button type="submit" disabled={sending}
+                    style={{ display:"inline-flex", alignItems:"center", gap:8,
+                      background:"var(--leaf)", color:"var(--ink)", padding:"14px 28px",
+                      borderRadius:999, fontSize:14, fontWeight:700, border:0,
+                      cursor: sending?"not-allowed":"pointer", opacity: sending?0.7:1,
+                      alignSelf:"flex-start", marginTop:8 }}>
+                    {sending ? fcfg.sendingLabel : fcfg.submitLabel}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // FOOTER
+    // ════════════════════════════════════════════════════════════════
+    function Footer() {
+      const f = S.footer || {};
+      const brand = S.brand || {};
+      return (
+        <footer style={{ background:"#120802", color:"rgba(242,231,195,0.65)" }}>
+          <div className="footer-grid" style={{ maxWidth:1360, margin:"0 auto",
+            padding:"70px 32px 32px", display:"grid", gridTemplateColumns:"1.4fr 1fr 1fr 1fr", gap:48 }}>
+            <div style={{ display:"flex", flexDirection:"column", gap:8, fontSize:14 }}>
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+                <img src={brand.logo || "ecologz-logo.png"} alt={brand.parent || "EcoLogz"} width="36" height="36"
+                  style={{ display:"block", objectFit:"contain" }} onError={e=>e.target.style.display='none'} />
+                <div style={{ fontFamily:"var(--serif)", fontWeight:600, fontSize:20, color:"var(--cream)" }}>{brand.name}<span style={{ color:"var(--orange)" }}>{brand.tm}</span></div>
+              </div>
+              <p style={{ fontFamily:"var(--serif)", fontSize:16, fontStyle:"italic", lineHeight:1.6, marginTop:14, maxWidth:340, color:"rgba(242,231,195,0.78)" }}>
+                {f.tagline}
+              </p>
+              <div style={{ marginTop:18, display:"flex", alignItems:"center", gap:8 }}>
+                <Sprig size={20} color="var(--leaf)"/>
+                <span style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.2em", color:"var(--leaf)" }}>{f.sub}</span>
+              </div>
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:10, fontSize:14 }}>
+              <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.2em", color:"var(--cream)", marginBottom:6 }}>{f.siteHeader}</div>
+              {(f.siteLinks || []).map(l => (
+                <a key={l.id} href={`#${l.id}`} style={{ color:"rgba(242,231,195,0.65)", textDecoration:"none" }}>{l.label}</a>
+              ))}
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:10, fontSize:14 }}>
+              <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.2em", color:"var(--cream)", marginBottom:6 }}>{f.orderHeader}</div>
+              {(f.orderLinks || []).map(l => (
+                <a key={l.label} href={l.href} style={{ color:"rgba(242,231,195,0.65)", textDecoration:"none" }}>{l.label}</a>
+              ))}
+            </div>
+            <div style={{ display:"flex", flexDirection:"column", gap:10, fontSize:14 }}>
+              <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.2em", color:"var(--cream)", marginBottom:6 }}>{f.aboutHeader}</div>
+              {(f.aboutLines || []).map((line, i) => <div key={i}>{line}</div>)}
+            </div>
+          </div>
+          <div style={{ borderTop:"1px solid rgba(255,255,255,0.08)", padding:"20px 32px",
+            maxWidth:1320, margin:"0 auto", display:"flex", justifyContent:"space-between",
+            flexWrap:"wrap", gap:12, fontFamily:"var(--mono)", fontSize:10,
+            letterSpacing:"0.1em", color:"rgba(248,237,216,0.38)" }}>
+            <span>© {new Date().getFullYear()} {f.copyright}</span>
+            <span>{f.certNote}</span>
+          </div>
+        </footer>
+      );
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    // MOBILE NAV
+    // ════════════════════════════════════════════════════════════════
+    function MobileNav() {
+      const close = () => document.getElementById('mob').classList.remove('open');
+      const links = (S.nav && S.nav.links) || [];
+      return (
+        <div id="mob" style={{ display:"none", position:"fixed", inset:0, background:"var(--soil)",
+          zIndex:200, flexDirection:"column", alignItems:"center", justifyContent:"center", gap:36 }}>
+          <button onClick={close} style={{ position:"absolute", top:24, right:28, background:"none",
+            border:"none", color:"rgba(255,255,255,0.5)", fontSize:"2rem", cursor:"pointer" }}>✕</button>
+          {links.map(l => (
+            <a key={l.id} href={`#${l.id}`} onClick={close}
+              style={{ fontSize:"1.5rem", fontWeight:600, color:"rgba(255,255,255,0.85)", textDecoration:"none" }}>{l.label}</a>
+          ))}
+        </div>
+      );
+    }
+    // Show mob menu as flex when .open
+    const mobStyle = document.createElement('style');
+    mobStyle.textContent = '#mob.open{display:flex!important;}';
+    document.head.appendChild(mobStyle);
+
+    // ════════════════════════════════════════════════════════════════
+    // APP
+    // ════════════════════════════════════════════════════════════════
+    function App() {
+      const sec = (S.sections) || {};
+      return (
+        <>
+          <MobileNav />
+          <Header />
+          <main>
+            <Hero />
+            {sec.certBand       !== false && <CertBand />}
+            {sec.product        !== false && <Product />}
+            {sec.farms          !== false && <Farms />}
+            {sec.science        !== false && <Science />}
+            {sec.results        === true  && <Results />}
+            {sec.sustainability !== false && <Sustainability />}
+            {sec.testimonials   === true  && <Testimonial />}
+            {sec.contact        !== false && <Contact />}
+          </main>
+          <Footer />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
