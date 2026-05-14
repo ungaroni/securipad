@@ -171,11 +171,7 @@ window.SITE = {
     eyebrow:        "§ 02 · FIELD RESULTS",
     headline:       "8.9 million birds.",
     headlineItalic: "One bedding outperformed.",
-    lede:
-      "Real commercial growing data from a large broiler integration: 7 farms, " +
-      "14 grow-out cycles across 2023–2025. Half of the houses on conventional " +
-      "sawdust, half on SecuriPad. Identical stocking density, identical management. " +
-      "Bedding was the variable.",
+    lede: "7 farms. 14 cycles. Sawdust vs SecuriPad, side by side.",
 
     /* Headline stat tiles — what's most decisive in the eyes of an integrator. */
     tiles: [
@@ -252,7 +248,7 @@ window.SITE = {
       },
       {
         n: "03",
-        kicker: "SOFT",
+        kicker: "SAFE",
         title: "Safe to walk, rest, and grow on",
         body:
           "A coarse then gentle crushing, plus thermal softening of the wood fibre, " +
@@ -350,9 +346,6 @@ window.SITE = {
       emailPlaceholder:"you@company.com",
       phoneLabel:    "Phone",
       phonePlaceholder:"+1 555 000 0000",
-      housesLabel:   "Houses",
-      formatLabel:   "Format",
-      formats:       ["10 kg bag", "75 m³ bulk container (~30 t)", "Mixed"],
       countryLabel:  "Country",
       countries:     ["Israel", "Cyprus", "Greece", "Italy", "Spain", "United Kingdom", "United States", "Other"],
       notesLabel:    "Notes",
@@ -362,8 +355,6 @@ window.SITE = {
       successKicker: "QUOTE REQUEST RECEIVED",
       successMessage:"We'll be in touch.",
       successCta:    "Submit another",
-      defaultHouses: "60",
-      defaultFormat: "Big bag (FIBC)",
       defaultCountry:"Israel",
     },
 

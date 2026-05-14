@@ -703,13 +703,12 @@
                 </div>
               ))}
             </div>
-            {/* Methodology note */}
+            {/* Methodology note — fine print */}
             {r.note && (
-              <div style={{ marginTop: 22, fontSize: 13, color: "var(--brown)", lineHeight: 1.65,
-                padding: "16px 20px", background: "var(--cream)", borderRadius: 6,
-                border: "1px dashed var(--rule-2)" }}>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.18em",
-                  color: "var(--leaf-deep)" }}>METHOD </span>
+              <div style={{ marginTop: 18, fontSize: 11, color: "var(--brown-2)", lineHeight: 1.6,
+                opacity: 0.75 }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: "0.18em",
+                  color: "var(--brown-3)", marginRight: 6 }}>METHOD</span>
                 {r.note}
               </div>
             )}
@@ -855,7 +854,7 @@
       const farms = f.items || [];
       const [hover, setHover] = useState(null);
       return (
-        <section id="farms" style={{ padding:"130px 0 110px", background:"var(--paper)" }}>
+        <section id="farms" style={{ padding:"130px 0 110px", background:"var(--cream-2)" }}>
           <SectionHead eye={f.eyebrow} h={f.headline} hItalic={f.headlineItalic} lede={f.lede} />
           <div style={{ maxWidth:1320, margin:"0 auto", padding:"0 32px" }}>
             <div className="farms-grid" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:18 }}>
@@ -972,8 +971,6 @@
       const [sending, setSending] = useState(false);
       const [form, setForm] = useState({
         org:"", name:"", email:"", phone:"",
-        houses: fcfg.defaultHouses || "60",
-        format: fcfg.defaultFormat || "Big bag (FIBC)",
         country: fcfg.defaultCountry || "Israel",
         message:"",
       });
@@ -1040,8 +1037,8 @@
                   color:"var(--leaf)", marginBottom:8 }}>{c.packaging.eyebrow}</div>
                 <div style={{ fontFamily:"var(--serif)", fontSize:26, fontWeight:500, fontStyle:"italic",
                   color:"var(--cream)", marginBottom:22, lineHeight:1.2 }}>{c.packaging.headline}</div>
-                <div style={{ display:"grid", gridTemplateColumns: c.packaging.image
-                  ? "1fr 1fr 1fr" : "1fr 1fr", gap:28, alignItems:"start" }}>
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr",
+                  gap:28, alignItems:"start" }}>
                   {(c.packaging.options || []).map(o => (
                     <div key={o.k} style={{ paddingTop:16, borderTop:"1px solid rgba(242,231,195,0.18)" }}>
                       <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.20em",
@@ -1054,13 +1051,21 @@
                         marginTop:14, marginBottom:0 }}>{o.body}</p>
                     </div>
                   ))}
-                  {c.packaging.image && (
-                    <div style={{ aspectRatio:"4/3", borderRadius:6, overflow:"hidden",
-                      background:"rgba(0,0,0,0.18)" }}>
+                  <div style={{ aspectRatio:"4/3", borderRadius:6, overflow:"hidden",
+                    background:"rgba(0,0,0,0.18)", border:"1px dashed rgba(242,231,195,0.25)",
+                    display:"flex", alignItems:"center", justifyContent:"center" }}>
+                    {c.packaging.image ? (
                       <img src={c.packaging.image} alt={c.packaging.imageAlt || ""}
                         style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
-                    </div>
-                  )}
+                    ) : (
+                      <div style={{ textAlign:"center", padding:24, color:"rgba(242,231,195,0.5)" }}>
+                        <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.22em" }}>IMAGE</div>
+                        <div style={{ fontFamily:"var(--serif)", fontSize:13, fontStyle:"italic", marginTop:8, lineHeight:1.4 }}>
+                          Packed product photo<br/>goes here
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1103,11 +1108,7 @@
                     <Field label={fcfg.emailLabel} type="email" name="email" value={form.email} onChange={set("email")} required placeholder={fcfg.emailPlaceholder} />
                     <Field label={fcfg.phoneLabel} name="phone" value={form.phone} onChange={set("phone")} placeholder={fcfg.phonePlaceholder} />
                   </div>
-                  <div className="frow3" style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14 }}>
-                    <Field label={fcfg.housesLabel} type="number" name="houses" min="1" value={form.houses} onChange={set("houses")} />
-                    <Sel label={fcfg.formatLabel} value={form.format} onChange={set("format")} options={fcfg.formats || []} />
-                    <Sel label={fcfg.countryLabel} value={form.country} onChange={set("country")} options={fcfg.countries || []} />
-                  </div>
+                  <Sel label={fcfg.countryLabel} value={form.country} onChange={set("country")} options={fcfg.countries || []} />
                   <label style={{ display:"flex", flexDirection:"column" }}>
                     <span style={lbl}>{fcfg.notesLabel}</span>
                     <textarea name="message" value={form.message} onChange={set("message")} rows={4}
