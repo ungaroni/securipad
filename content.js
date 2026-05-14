@@ -37,7 +37,7 @@ window.SITE = {
     contact:         true,
     /* Hidden until ready — flip true when the content is signed off: */
     sustainability:  false,
-    results:         false,
+    results:         true,
     testimonials:    false,
   },
 
@@ -84,14 +84,14 @@ window.SITE = {
     imageCaptionSub: "SecuriPad, ready for placement",
 
     stats: [
-      { value: "150°C~", label: "Thermally pasteurized", counter: 150, suffix: "°C~" },
+      { value: "110°C~", label: "Thermally pasteurized", counter: 110, suffix: "°C~" },
       { value: "3×",     label: "Absorption vs. conventional bedding", static: "3×" },
       { value: "1000+",  label: "Cooperative houses",   counter: 1000, suffix: "+" },
     ],
 
     marquee: [
       "Drier litter, less disease",
-      "Thermally pasteurized at 150°C~",
+      "Thermally pasteurized at 110°C~",
       "Pathogen free from day one",
       "Reduced footpad dermatitis",
       "Easy to spread",
@@ -107,7 +107,7 @@ window.SITE = {
   /* ── CERTIFICATION BAND ────────────────────────────────────────────── */
   certBand: [
     { label: "ORGANIC CERTIFIED",   sub: "Aminolab toxin tests" },
-    { label: "THERMALLY PASTEURIZED", sub: "150°C~ every batch" },
+    { label: "THERMALLY PASTEURIZED", sub: "110°C~ every batch" },
     { label: "ZERO ADDITIVES",      sub: "No preservatives or adhesives" },
     { label: "EXPORT READY",        sub: "FOB & CIF worldwide" },
     { label: "COOPERATIVE PRICING", sub: "Direct from EcoLogz" },
@@ -166,13 +166,55 @@ window.SITE = {
     ],
   },
 
+  /* ── FIELD RESULTS (commercial integration data) ──────────────────── */
+  results: {
+    eyebrow:        "§ 02 · FIELD RESULTS",
+    headline:       "8.9 million birds.",
+    headlineItalic: "One bedding outperformed.",
+    lede:
+      "Real commercial growing data from a large broiler integration: 7 farms, " +
+      "14 grow-out cycles across 2023–2025. Half of the houses on conventional " +
+      "sawdust, half on SecuriPad. Identical stocking density, identical management. " +
+      "Bedding was the variable.",
+
+    /* Headline stat tiles — what's most decisive in the eyes of an integrator. */
+    tiles: [
+      { delta: "▼ 18.5%", label: "Mortality reduction",
+        a: { value: "5.90%", who: "Sawdust" },
+        b: { value: "4.81%", who: "SecuriPad" } },
+      { delta: "+75 g",   label: "Heavier market weight per bird",
+        a: { value: "2.600 kg", who: "Sawdust" },
+        b: { value: "2.675 kg", who: "SecuriPad" } },
+      { delta: "+4.3%",   label: "More meat per m² of house",
+        a: { value: "32.12 kg/m²", who: "Sawdust" },
+        b: { value: "33.52 kg/m²", who: "SecuriPad" } },
+      { delta: "+10 pts", label: "Higher EPEF production index",
+        a: { value: "400.3", who: "Sawdust" },
+        b: { value: "410.5", who: "SecuriPad" } },
+    ],
+
+    /* Bottom strip of context numbers. */
+    foot: [
+      ["4,517,703",  "Birds on SecuriPad"],
+      ["4,366,740",  "Birds on conventional sawdust"],
+      ["14",          "Grow-out cycles measured"],
+      ["13.13",       "Birds per m² (matched stocking density)"],
+    ],
+
+    note:
+      "Method: side-by-side comparison across 7 commercial farms in a large " +
+      "integrator's network, 2023–2025. Stocking density, season mix and " +
+      "management teams matched. The size and duration of the dataset make " +
+      "this one of the largest commercial bedding comparisons ever published.",
+  },
+
   /* ── SCIENCE ───────────────────────────────────────────────────────── */
   science: {
-    eyebrow:        "§ 03 · THE SCIENCE",
+    eyebrow:        "§ 04 · THE SCIENCE",
     headline:       "Three principles.",
     headlineItalic: "Verified in the field.",
     lede:
-      "Field results follow when production is right. A thermal pass at 150°C~, " +
+      "Field results follow when production is right. A thermal pass at 110°C~, " +
       "a fast evaporating geometry, and a softened juvenile friendly fibre. " +
       "These are the three things SecuriPad is engineered to do, every batch.",
 
@@ -187,7 +229,7 @@ window.SITE = {
         kicker: "STERILIZE",
         title: "Pathogen free from day one",
         body:
-          "Every particle is thermally pasteurized at 150°C~, then gradually " +
+          "Every particle is thermally pasteurized at 110°C~, then gradually " +
           "cooled. Pathogens carried in raw wood do not survive the cycle. The " +
           "bedding ships sealed, dry, and biosecure for stronger biosecurity " +
           "from the very first chick.",
@@ -225,14 +267,14 @@ window.SITE = {
 
     process: [
       ["FROM", "Forest & orchard prunings", "Clean wood, locally collected, never industrial timber."],
-      ["VIA",  "Thermal pasteurization",    "Held at 150°C~, then packaged and gradually cooled."],
+      ["VIA",  "Thermal pasteurization",    "Held at 110°C~, then packaged and gradually cooled."],
       ["TO",   "Your house, biosecure",     "Delivered ready to spread, sealed, dry, and pathogen free."],
     ],
   },
 
   /* ── FARMS ─────────────────────────────────────────────────────────── */
   farms: {
-    eyebrow:        "§ 02 · ON THE FARM",
+    eyebrow:        "§ 03 · ON THE FARM",
     headline:       "Already in working",
     headlineItalic: "houses today.",
     lede:
@@ -261,12 +303,36 @@ window.SITE = {
 
   /* ── CONTACT (no office hours, no response-time promise) ───────────── */
   contact: {
-    eyebrow:        "§ 04 · CONTACT",
+    eyebrow:        "§ 05 · CONTACT",
     headline:       "Talk",
     headlineItalic: "to us.",
     lede:
       "We would love to hear from you, meet you, and walk you through exactly " +
       "how SecuriPad can make your farms healthier and more successful.",
+
+    /* Packaging / supply formats callout — sits above the form. */
+    packaging: {
+      eyebrow: "AVAILABLE FORMATS",
+      headline: "Two ways to receive SecuriPad.",
+      options: [
+        {
+          k: "BAG",
+          title: "10 kg bag",
+          sub:   "≈ 25 L",
+          body:  "Stackable, easy to handle, ideal for smaller houses and trial orders.",
+        },
+        {
+          k: "BULK",
+          title: "75 m³ container",
+          sub:   "≈ 30 tonnes",
+          body:  "Bulk container delivery at preferential pricing. Best for cooperative integrators running multiple houses.",
+        },
+      ],
+      /* Drop a real photo at images/contact/packaging.jpg later. */
+      image: null,
+      imageAlt: "SecuriPad packaging — bag and bulk",
+    },
+
 
     blocks: [
       { k: "DIRECT", kind: "phone", value: "+972 52 643 7074", href: "tel:+972526437074", sub: "Daniel · Order Desk" },
@@ -286,7 +352,7 @@ window.SITE = {
       phonePlaceholder:"+1 555 000 0000",
       housesLabel:   "Houses",
       formatLabel:   "Format",
-      formats:       ["Bulk delivery", "Big bag (FIBC)", "Small bag (20kg)", "Mixed"],
+      formats:       ["10 kg bag", "75 m³ bulk container (~30 t)", "Mixed"],
       countryLabel:  "Country",
       countries:     ["Israel", "Cyprus", "Greece", "Italy", "Spain", "United Kingdom", "United States", "Other"],
       notesLabel:    "Notes",

@@ -653,58 +653,66 @@
     }
 
     function Results() {
-      const [tab, setTab] = useState(0);
-      const tabs = [
-        { k:"health",      t:"Chicken health",    sub:"Mortality and footpad lesions",  unit:"% of flock" },
-        { k:"weight",      t:"Chicken weight",    sub:"Average daily gain (ADG)",       unit:"g per day" },
-        { k:"antibiotics", t:"Antibiotic use",    sub:"Treatments per cycle",           unit:"courses per cycle" },
-      ];
-      const data = {
-        health:      { sec:[0.4,0.6,0.9,1.1,1.4,1.7,1.9], conv:[0.6,1.1,1.7,2.4,3.1,3.9,4.6], lower:true,  unit:"%", format:(v)=>v.toFixed(1)+"%" },
-        weight:      { sec:[22,38,55,68,76,82,86],          conv:[21,36,50,60,67,72,75],         lower:false, unit:"g", format:(v)=>Math.round(v)+" g/d" },
-        antibiotics: { sec:[0,0,0,0,0,0,0],                 conv:[0,0,1,1,2,2,2],               lower:true,  unit:"ct", format:(v)=>v.toFixed(0) },
-      };
-      const cur = tabs[tab];
-      const ds = data[cur.k];
-
+      const r = S.results || {};
+      const tiles = r.tiles || [];
+      const foot = r.foot || [];
       return (
         <section id="results" style={{ padding: "130px 0 110px", background: "var(--paper)" }}>
-          <SectionHead eye="§ 03 · FIELD RESULTS" h="Healthier flocks." hItalic="Less antibiotics."
-            lede="Cooperative integrators measure SecuriPad against their previous bedding across the same houses, the same flocks, the same diet. Early reads from production trials are below. Full datasets are available on request." />
-          <div style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px" }}>
-            <div className="rs-tabs" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14, marginBottom:28 }}>
-              {tabs.map((t,i) => (
-                <button key={t.k} onClick={()=>setTab(i)} style={{
-                  textAlign:"left", border:"1px solid", padding:"22px 24px", borderRadius:8,
-                  cursor:"pointer", fontFamily:"var(--sans)", transition:"all 0.25s ease",
-                  background: i===tab?"var(--ink)":"var(--cream)",
-                  color: i===tab?"var(--cream)":"var(--ink)",
-                  borderColor: i===tab?"var(--ink)":"var(--rule)" }}>
-                  <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em",
-                    color: i===tab?"var(--leaf)":"var(--leaf-deep)" }}>METRIC 0{i+1}</div>
-                  <div style={{ fontFamily:"var(--serif)", fontWeight:500, fontSize:22, marginTop:8, lineHeight:1.2 }}>{t.t}</div>
-                  <div style={{ fontSize:13, marginTop:6, color: i===tab?"rgba(242,231,195,0.7)":"var(--brown-2)" }}>{t.sub}</div>
-                </button>
+          <SectionHead eye={r.eyebrow} h={r.headline} hItalic={r.headlineItalic} lede={r.lede} />
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 32px" }}>
+            {/* Big delta tiles */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 18, marginBottom: 26 }}>
+              {tiles.map((t, i) => (
+                <Reveal key={i} delay={i*80}>
+                  <div style={{ background: "var(--cream)", border: "1px solid var(--rule)",
+                    borderRadius: 8, padding: "30px 28px", height: "100%" }}>
+                    <div style={{ fontFamily: "var(--serif)", fontSize: 48, fontWeight: 500,
+                      color: "var(--leaf-deep)", lineHeight: 1, fontStyle: "italic" }}>{t.delta}</div>
+                    <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em",
+                      color: "var(--brown-2)", marginTop: 14, lineHeight: 1.5 }}>{t.label}</div>
+                    <div style={{ marginTop: 22, paddingTop: 18, borderTop: "1px solid var(--rule)",
+                      display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                      <div>
+                        <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: "0.16em",
+                          color: "var(--brown-3)" }}>{t.a.who.toUpperCase()}</div>
+                        <div style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--brown)",
+                          marginTop: 4 }}>{t.a.value}</div>
+                      </div>
+                      <div>
+                        <div style={{ fontFamily: "var(--mono)", fontSize: 9, letterSpacing: "0.16em",
+                          color: "var(--leaf-deep)" }}>{t.b.who.toUpperCase()}</div>
+                        <div style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--ink)",
+                          marginTop: 4, fontWeight: 500 }}>{t.b.value}</div>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
               ))}
             </div>
-            <ResultsChart key={cur.k} ds={ds} title={cur.t} sub={cur.sub} />
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:18, marginTop:22 }}>
-              {[
-                ["SecuriPad final week", <Counter to={ds.sec[ds.sec.length-1]} decimals={cur.k==="health"?1:0} suffix={cur.k==="health"?"%":cur.k==="weight"?" g/d":" ct"}/>, "var(--orange)"],
-                ["Conventional final week", <Counter to={ds.conv[ds.conv.length-1]} decimals={cur.k==="health"?1:0} suffix={cur.k==="health"?"%":cur.k==="weight"?" g/d":" ct"}/>, "var(--ink)"],
-                ["Direction", ds.lower?"↓ Lower is better":"↑ Higher is better", "var(--leaf-deep)"],
-              ].map(([k, v, c]) => (
-                <div key={k} style={{ background:"var(--cream)", border:"1px solid var(--rule)", borderRadius:8, padding:"22px 26px" }}>
-                  <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--brown-2)" }}>{k}</div>
-                  <div style={{ fontFamily:"var(--serif)", fontSize:30, fontWeight:500, marginTop:8, color:c }}>{v}</div>
+            {/* Bottom context strip */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: 0, background: "var(--ink)", color: "var(--cream)",
+              borderRadius: 8, overflow: "hidden" }}>
+              {foot.map(([v, l], i) => (
+                <div key={i} style={{ padding: "26px 24px",
+                  borderRight: i < foot.length - 1 ? "1px solid rgba(242,231,195,0.1)" : "none" }}>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 28, fontWeight: 500, color: "var(--cream)" }}>{v}</div>
+                  <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em",
+                    color: "rgba(242,231,195,0.7)", marginTop: 8, lineHeight: 1.4 }}>{l}</div>
                 </div>
               ))}
             </div>
-            <div style={{ marginTop:22, fontSize:13, color:"var(--brown)", lineHeight:1.65,
-              padding:"14px 18px", background:"var(--cream)", borderRadius:6, border:"1px dashed var(--rule-2)" }}>
-              <span style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.18em", color:"var(--orange)" }}>NOTE </span>
-              Charts shown above are illustrative placeholders. Final figures will be supplied by EcoLogz from cooperative trial reports once veterinary sign off is complete.
-            </div>
+            {/* Methodology note */}
+            {r.note && (
+              <div style={{ marginTop: 22, fontSize: 13, color: "var(--brown)", lineHeight: 1.65,
+                padding: "16px 20px", background: "var(--cream)", borderRadius: 6,
+                border: "1px dashed var(--rule-2)" }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.18em",
+                  color: "var(--leaf-deep)" }}>METHOD </span>
+                {r.note}
+              </div>
+            )}
           </div>
         </section>
       );
@@ -1022,6 +1030,42 @@
       return (
         <section id="contact" style={{ padding:"130px 0 90px", background:"var(--soil)", color:"var(--cream)" }}>
           <SectionHead eye={c.eyebrow} h={c.headline} hItalic={c.headlineItalic} lede={c.lede} invert />
+
+          {/* Packaging / supply formats — sits above the form */}
+          {c.packaging && (
+            <div style={{ maxWidth:1320, margin:"0 auto 56px", padding:"0 32px" }}>
+              <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.10)",
+                borderRadius:8, padding:"32px 36px" }}>
+                <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.22em",
+                  color:"var(--leaf)", marginBottom:8 }}>{c.packaging.eyebrow}</div>
+                <div style={{ fontFamily:"var(--serif)", fontSize:26, fontWeight:500, fontStyle:"italic",
+                  color:"var(--cream)", marginBottom:22, lineHeight:1.2 }}>{c.packaging.headline}</div>
+                <div style={{ display:"grid", gridTemplateColumns: c.packaging.image
+                  ? "1fr 1fr 1fr" : "1fr 1fr", gap:28, alignItems:"start" }}>
+                  {(c.packaging.options || []).map(o => (
+                    <div key={o.k} style={{ paddingTop:16, borderTop:"1px solid rgba(242,231,195,0.18)" }}>
+                      <div style={{ fontFamily:"var(--mono)", fontSize:10, letterSpacing:"0.20em",
+                        color:"var(--leaf)" }}>{o.k}</div>
+                      <div style={{ fontFamily:"var(--serif)", fontSize:22, fontWeight:500,
+                        color:"var(--cream)", marginTop:8, lineHeight:1.2 }}>{o.title}</div>
+                      <div style={{ fontFamily:"var(--mono)", fontSize:11, color:"rgba(242,231,195,0.65)",
+                        letterSpacing:"0.10em", marginTop:4 }}>{o.sub}</div>
+                      <p style={{ fontSize:14, color:"rgba(242,231,195,0.85)", lineHeight:1.6,
+                        marginTop:14, marginBottom:0 }}>{o.body}</p>
+                    </div>
+                  ))}
+                  {c.packaging.image && (
+                    <div style={{ aspectRatio:"4/3", borderRadius:6, overflow:"hidden",
+                      background:"rgba(0,0,0,0.18)" }}>
+                      <img src={c.packaging.image} alt={c.packaging.imageAlt || ""}
+                        style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}/>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="contact-grid" style={{ maxWidth:1320, margin:"0 auto", padding:"0 32px",
             display:"grid", gridTemplateColumns:"1fr 1.1fr", gap:56, alignItems:"stretch" }}>
             <div>
@@ -1173,9 +1217,9 @@
             <Hero />
             {sec.certBand       !== false && <CertBand />}
             {sec.product        !== false && <Product />}
+            {sec.results        === true  && <Results />}
             {sec.farms          !== false && <Farms />}
             {sec.science        !== false && <Science />}
-            {sec.results        === true  && <Results />}
             {sec.sustainability !== false && <Sustainability />}
             {sec.testimonials   === true  && <Testimonial />}
             {sec.contact        !== false && <Contact />}
