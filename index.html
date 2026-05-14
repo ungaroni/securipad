@@ -559,8 +559,8 @@
       const cards = sc.cards || [];
       const process = sc.process || [];
       return (
-        <section id="science" style={{ padding:"130px 0 110px", background:"var(--moss)", color:"var(--cream)" }}>
-          <SectionHead eye={sc.eyebrow} h={sc.headline} hItalic={sc.headlineItalic} lede={sc.lede} invert />
+        <section id="science" style={{ padding:"130px 0 110px", background:"var(--paper)" }}>
+          <SectionHead eye={sc.eyebrow} h={sc.headline} hItalic={sc.headlineItalic} lede={sc.lede} />
           <div className="sci-grid" style={{ maxWidth:1360, margin:"0 auto", padding:"0 32px",
             display:"grid", gridTemplateColumns:`repeat(${cards.length || 3},1fr)`, gap:22 }}>
             {cards.map(c => (
@@ -572,13 +572,13 @@
           {/* Process strip — three step explanation */}
           <div style={{ maxWidth:1360, margin:"60px auto 0", padding:"0 32px" }}>
             <div style={{ display:"flex", flexWrap:"wrap", alignItems:"stretch", gap:0,
-              background:"var(--cream)", color:"var(--ink)", borderRadius:8, overflow:"hidden" }}>
+              background:"var(--ink)", color:"var(--cream)", borderRadius:8, overflow:"hidden" }}>
               {process.map(([k, t, s], i) => (
                 <Reveal key={k} delay={i*100} style={{ flex:"1 1 0", minWidth:240, padding:"30px 28px",
-                  borderRight: i < process.length - 1 ? "1px solid var(--rule)" : "none" }}>
-                  <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em", color:"var(--leaf-deep)" }}>{k}</div>
+                  borderRight: i < process.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none" }}>
+                  <div style={{ fontFamily:"var(--mono)", fontSize:11, letterSpacing:"0.22em", color:"var(--leaf)" }}>{k}</div>
                   <div style={{ fontFamily:"var(--serif)", fontSize:24, fontWeight:500, marginTop:10, lineHeight:1.2 }}>{t}</div>
-                  <div style={{ fontSize:14, lineHeight:1.65, color:"var(--brown)", marginTop:12 }}>{s}</div>
+                  <div style={{ fontSize:14, lineHeight:1.65, color:"rgba(242,231,195,0.7)", marginTop:12 }}>{s}</div>
                 </Reveal>
               ))}
             </div>
