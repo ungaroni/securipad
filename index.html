@@ -97,7 +97,9 @@
       .nav-links{display:none!important;}
       .nav-cta{display:none!important;}
       .hamburger{display:flex!important;}
-      .hero-stats{grid-template-columns:repeat(2,auto)!important;}
+      .hero-stats{grid-template-columns:repeat(3,1fr)!important;gap:14px!important;}
+      .hero-stats > div > div:first-child{font-size:26px!important;}
+      .hero-stats > div > div:last-child{font-size:11px!important;line-height:1.3!important;}
       .sci-foot{grid-template-columns:1fr!important;}
       .farms-grid{grid-template-columns:1fr!important;}
       .contact-blocks{grid-template-columns:1fr!important;}
@@ -108,7 +110,9 @@
 
       /* Mobile padding cuts */
       section{padding:64px 0!important;}
-      .product-stage > div:nth-child(2){padding:28px 22px!important;}
+      .product-stage{gap:0!important;}
+      .product-stage > div:first-child{aspect-ratio:16/10!important;}
+      .product-stage > div:nth-child(2){padding:22px 22px 26px!important;}
       .product-nav button{padding:14px 16px!important;}
 
       /* Mobile font cuts */
@@ -119,10 +123,11 @@
       .hero-body{font-size:15px!important;line-height:1.55!important;margin-bottom:24px!important;}
       .hero-grid{padding:32px 22px 48px!important;gap:0!important;}
       .hero-stats{gap:24px!important;}
-      .hero-stats > div > div:first-child{font-size:42px!important;}
 
-      /* Header tightening */
-      header > div{padding:10px 18px!important;}
+      /* Header tightening — flex with hamburger forced right */
+      header > div{padding:10px 18px!important;grid-template-columns:1fr auto!important;gap:8px!important;}
+      header > div > div:last-child{justify-self:end!important;}
+      header img{width:36px!important;height:36px!important;}
 
       /* Hide low-value chrome on mobile */
       .marquee-wrap{display:none!important;}
@@ -135,6 +140,10 @@
       .product-nav{grid-template-columns:1fr!important;}
       .product-nav button{border-right:none!important;border-top:1px solid var(--rule)!important;}
       .product-nav button:first-child{border-top:none!important;}
+
+      /* Contact — stack packaging callout cleanly */
+      .packaging-grid{grid-template-columns:1fr!important;gap:20px!important;}
+      .packaging-grid > div:last-child{aspect-ratio:16/10!important;}
     }
   </style>
 </head>
@@ -884,12 +893,15 @@
       const f = S.farms || {};
       const farms = f.items || [];
       const [hover, setHover] = useState(null);
+      const [expanded, setExpanded] = useState(false);
+      const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width:768px)").matches;
+      const visible = isMobile && !expanded ? farms.slice(0,2) : farms;
       return (
         <section id="farms" style={{ padding:"130px 0 110px", background:"var(--cream)" }}>
           <SectionHead eye={f.eyebrow} h={f.headline} hItalic={f.headlineItalic} lede={f.lede} />
           <div style={{ maxWidth:1320, margin:"0 auto", padding:"0 32px" }}>
             <div className="farms-grid" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:18 }}>
-              {farms.map((f,i) => (
+              {visible.map((f,i) => (
                 <Reveal key={f.name} delay={i*50} style={{ background:"var(--cream)", borderRadius:6,
                   overflow:"hidden", cursor:"pointer", boxShadow:"0 1px 6px -2px rgba(42,28,16,0.12)",
                   transform: hover===i?"translateY(-4px)":"none",
@@ -913,6 +925,16 @@
                 </Reveal>
               ))}
             </div>
+            {isMobile && !expanded && farms.length > 2 && (
+              <div style={{ textAlign:"center", marginTop:24 }}>
+                <button onClick={() => setExpanded(true)} style={{
+                  background:"transparent", border:"1px solid var(--ink)", color:"var(--ink)",
+                  padding:"12px 28px", borderRadius:999, fontSize:14, fontWeight:600,
+                  cursor:"pointer", fontFamily:"var(--sans)" }}>
+                  See all {farms.length} farms →
+                </button>
+              </div>
+            )}
           </div>
         </section>
       );
@@ -1068,7 +1090,7 @@
                   color:"var(--leaf)", marginBottom:8 }}>{c.packaging.eyebrow}</div>
                 <div style={{ fontFamily:"var(--serif)", fontSize:26, fontWeight:500, fontStyle:"italic",
                   color:"var(--cream)", marginBottom:22, lineHeight:1.2 }}>{c.packaging.headline}</div>
-                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr",
+                <div className="packaging-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr",
                   gap:28, alignItems:"start" }}>
                   {(c.packaging.options || []).map(o => (
                     <div key={o.k} style={{ paddingTop:16, borderTop:"1px solid rgba(242,231,195,0.18)" }}>

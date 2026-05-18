@@ -106,11 +106,12 @@ window.SITE = {
 
   /* ── CERTIFICATION BAND ────────────────────────────────────────────── */
   certBand: [
-    { label: "ORGANIC CERTIFIED",   sub: "Aminolab toxin tests" },
+    { label: "3× ABSORPTION",         sub: "vs. conventional bedding" },
+    { label: "ORGANIC CERTIFIED",     sub: "Aminolab toxin tests" },
     { label: "THERMALLY PASTEURIZED", sub: "110°C~ every batch" },
-    { label: "ZERO ADDITIVES",      sub: "No preservatives or adhesives" },
-    { label: "EXPORT READY",        sub: "FOB & CIF worldwide" },
-    { label: "COOPERATIVE PRICING", sub: "Direct from EcoLogz" },
+    { label: "ZERO ADDITIVES",        sub: "No preservatives or adhesives" },
+    { label: "EXPORT READY",          sub: "Land + sea, worldwide" },
+    { label: "COOPERATIVE PRICING",   sub: "Direct from EcoLogz" },
   ],
 
   /* ── PRODUCT (tabbed) ──────────────────────────────────────────────── */
