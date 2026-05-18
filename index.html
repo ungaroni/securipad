@@ -93,8 +93,9 @@
       .cert-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
       .testi-grid{grid-template-columns:1fr!important;gap:36px!important;}
     }
-    @media(max-width:680px){
+    @media(max-width:768px){
       .nav-links{display:none!important;}
+      .nav-cta{display:none!important;}
       .hamburger{display:flex!important;}
       .hero-stats{grid-template-columns:repeat(2,auto)!important;}
       .sci-foot{grid-template-columns:1fr!important;}
@@ -105,16 +106,23 @@
       .footer-grid{grid-template-columns:1fr!important;}
       .su-flow{flex-direction:column!important;}
 
-      /* Mobile padding cuts — sections breathe less, page feels tighter */
-      section{padding:70px 0!important;}
-      .product-stage > div:nth-child(2){padding:32px 24px!important;}
+      /* Mobile padding cuts */
+      section{padding:64px 0!important;}
+      .product-stage > div:nth-child(2){padding:28px 22px!important;}
       .product-nav button{padding:14px 16px!important;}
 
       /* Mobile font cuts */
-      .sectionhead h2{font-size:36px!important;line-height:1.05!important;}
-      .sectionhead p{font-size:15px!important;}
-      .hero h1{font-size:44px!important;line-height:1.02!important;}
-      .hero-body{font-size:15px!important;}
+      .sectionhead{padding:0 22px 36px!important;}
+      .sectionhead h2{font-size:32px!important;line-height:1.08!important;margin-bottom:18px!important;}
+      .sectionhead p{font-size:15px!important;line-height:1.55!important;}
+      .hero h1{font-size:42px!important;line-height:1.05!important;margin:18px 0 20px!important;}
+      .hero-body{font-size:15px!important;line-height:1.55!important;margin-bottom:24px!important;}
+      .hero-grid{padding:32px 22px 48px!important;gap:0!important;}
+      .hero-stats{gap:24px!important;}
+      .hero-stats > div > div:first-child{font-size:42px!important;}
+
+      /* Header tightening */
+      header > div{padding:10px 18px!important;}
 
       /* Hide low-value chrome on mobile */
       .marquee-wrap{display:none!important;}
@@ -123,7 +131,7 @@
       .farms-tile-loc{font-size:11px!important;}
       .footer-copyright-row{flex-direction:column!important;gap:8px!important;}
 
-      /* Carousel — stack 3 nav tabs into one column for legibility */
+      /* Carousel nav — single column */
       .product-nav{grid-template-columns:1fr!important;}
       .product-nav button{border-right:none!important;border-top:1px solid var(--rule)!important;}
       .product-nav button:first-child{border-top:none!important;}
@@ -276,7 +284,7 @@
                 style={{ display: "block", objectFit: "contain" }}
                 onError={e => { e.target.style.display='none'; }} />
               <div>
-                <div style={{ fontFamily:"var(--serif)", fontWeight: 600, fontSize: 19, letterSpacing: -0.2 }}>{brand.name || "SecuriPad"}<span style={{ color: "var(--orange)" }}>{brand.tm || "™"}</span></div>
+                <div style={{ fontFamily:"var(--serif)", fontWeight: 600, fontSize: 19, letterSpacing: -0.2 }}>{brand.name || "SecuriPad"}<span style={{ color: "var(--orange)" }}>{brand.tm}</span></div>
                 <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--brown-2)", letterSpacing: "0.12em", marginTop: 1 }}>{brand.sub || "BY ECOLOGZ"}</div>
               </div>
             </a>
@@ -284,9 +292,9 @@
               {navLinks.map(l => link(l.id, l.label))}
             </nav>
             <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-              <a href={navCta.href} style={{ display: "inline-flex", alignItems: "center", gap: 6,
+              <a className="nav-cta" href={navCta.href} style={{ display: "inline-flex", alignItems: "center", gap: 6,
                 background: "var(--orange)", color: "white", padding: "12px 20px", borderRadius: 999,
-                fontSize: 14, fontWeight: 600, textDecoration: "none", border: 0, transition: "background 0.2s" }}>
+                fontSize: 14, fontWeight: 600, textDecoration: "none", border: 0, transition: "background 0.2s", whiteSpace: "nowrap" }}>
                 {navCta.label}
               </a>
               <button className="hamburger" onClick={() => document.getElementById('mob').classList.add('open')}
