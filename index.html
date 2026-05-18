@@ -90,7 +90,8 @@
       .farms-grid{grid-template-columns:repeat(2,1fr)!important;}
       .contact-grid{grid-template-columns:1fr!important;}
       .footer-grid{grid-template-columns:1fr 1fr!important;}
-      .cert-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;}
+      .cert-grid{grid-template-columns:repeat(2,1fr)!important;gap:20px!important;padding:24px 18px!important;}
+      .cert-grid > div{padding:8px 0!important;}
       .testi-grid{grid-template-columns:1fr!important;gap:36px!important;}
     }
     @media(max-width:768px){
@@ -108,21 +109,23 @@
       .footer-grid{grid-template-columns:1fr!important;}
       .su-flow{flex-direction:column!important;}
 
-      /* Mobile padding cuts */
-      section{padding:64px 0!important;}
+      /* Mobile padding cuts — non-hero sections only */
+      section:not(.hero){padding:56px 0!important;}
+      .hero{padding:0!important;}
       .product-stage{gap:0!important;}
       .product-stage > div:first-child{aspect-ratio:16/10!important;}
       .product-stage > div:nth-child(2){padding:22px 22px 26px!important;}
       .product-nav button{padding:14px 16px!important;}
 
       /* Mobile font cuts */
-      .sectionhead{padding:0 22px 36px!important;}
-      .sectionhead h2{font-size:32px!important;line-height:1.08!important;margin-bottom:18px!important;}
-      .sectionhead p{font-size:15px!important;line-height:1.55!important;}
-      .hero h1{font-size:42px!important;line-height:1.05!important;margin:18px 0 20px!important;}
-      .hero-body{font-size:15px!important;line-height:1.55!important;margin-bottom:24px!important;}
-      .hero-grid{padding:32px 22px 48px!important;gap:0!important;}
-      .hero-stats{gap:24px!important;}
+      .sectionhead{padding:0 20px 30px!important;}
+      .sectionhead h2{font-size:30px!important;line-height:1.08!important;margin-bottom:14px!important;}
+      .sectionhead p{font-size:14px!important;line-height:1.55!important;}
+      .hero-eyebrow{font-size:10px!important;}
+      .hero h1{font-size:38px!important;line-height:1.05!important;margin:14px 0 16px!important;}
+      .hero-body{font-size:14px!important;line-height:1.55!important;margin-bottom:20px!important;}
+      .hero-grid{padding:8px 20px 32px!important;gap:0!important;}
+      .hero-stats{gap:18px!important;margin-top:24px!important;}
 
       /* Header tightening — flex with hamburger forced right */
       header > div{padding:10px 18px!important;grid-template-columns:1fr auto!important;gap:8px!important;}
@@ -337,7 +340,7 @@
           <div className="hero-grid" style={{ maxWidth: 1360, margin: "0 auto", padding: "56px 32px 72px",
             display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-              <Reveal style={{ display: "flex", alignItems: "center", gap: 12,
+              <Reveal className="hero-eyebrow" style={{ display: "flex", alignItems: "center", gap: 12,
                 fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em", color: "var(--leaf-deep)" }}>
                 <Sprig size={20} color="var(--leaf-deep)"/>
                 <span>{h.eyebrow}</span>
