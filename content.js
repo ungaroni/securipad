@@ -118,23 +118,16 @@ window.SITE = {
     eyebrow:        "§ 01 · THE PRODUCT",
     headline:       "Built for the way",
     headlineItalic: "integrators run houses.",
-    lede:
-      "Every aspect of SecuriPad is engineered around the four things that actually " +
-      "move the needle for cooperative integrators: drier litter, safer chicks, " +
-      "cleaner raw stock, and predictable supply.",
+    lede: "Engineered around what moves the needle: drier litter, safer chicks, cleaner stock.",
     tabs: [
       {
         k: "evaporation",
         t: "3× the absorption of conventional bedding",
         lede: "A precise blend of wood pellets and fine wood chips, tuned to your house.",
         d:
-          "SecuriPad is a precise blend of wood pellets and fine wood chips, " +
-          "mixed in ratios tuned to the stage and species in your house. The " +
-          "fine fraction creates a soft, comfortable surface for chicks during " +
-          "the early growth window; the pellets carry the workload — absorbing " +
-          "moisture and ammonia, holding the floor dry, and keeping ambient air " +
-          "healthy through the cycle. In our laboratory testing, absorption " +
-          "capacity measured 3× higher than conventional bedding.",
+          "Wood pellets + fine chips, mixed for your house. Fine for soft early-growth " +
+          "comfort; pellets to absorb moisture and ammonia. Lab-tested at 3× the " +
+          "absorption of conventional bedding.",
         img: "images/product/tab1.jpg",
         tag: "MID-CYCLE LITTER · ABSORBING",
       },
@@ -143,10 +136,8 @@ window.SITE = {
         t: "Eco friendly raw stock",
         lede: "Made from clean wood trimmings. No preservatives, adhesives or toxins.",
         d:
-          "We select wood directly from forests and orchards. External toxin tests " +
-          "by Aminolab gave SecuriPad organic certification, a level of cleanliness " +
-          "commercial sawdust cannot guarantee. Eco friendly bedding made entirely " +
-          "from clean wood trimmings.",
+          "Wood from forests and orchards. Aminolab-tested, organic certified — " +
+          "cleanliness commercial sawdust can't match.",
         img: "images/product/tab4.jpg",
         tag: "SKID-STEER · MID-SPREAD",
       },
@@ -155,10 +146,8 @@ window.SITE = {
         t: "Easy to use, easy to spread",
         lede: "Available in bulk or bags. Spread with tractor or manually.",
         d:
-          "Easy to use, easy to spread, even coverage, ready for the flock. " +
-          "Available in bulk or 20kg bags, spread with a tractor or manually. " +
-          "The softened fibre gives a gentle floor with great thermal insulation. " +
-          "Chickens feel safe to walk, rest, and grow on SecuriPad.",
+          "Even coverage, ready for the flock. Bulk or 20kg bags, spread with a " +
+          "tractor or by hand. Softened fibre gives a gentle, insulated floor.",
         img: "images/product/tab3.jpg",
         isVideo: false,
         tag: "PRODUCTION YARD · BULK DELIVERY",
@@ -209,10 +198,7 @@ window.SITE = {
     eyebrow:        "§ 04 · THE SCIENCE",
     headline:       "Three principles.",
     headlineItalic: "Verified in the field.",
-    lede:
-      "Field results follow when production is right. A thermal pass at 110°C~, " +
-      "a fast evaporating geometry, and a softened juvenile friendly fibre. " +
-      "These are the three things SecuriPad is engineered to do, every batch.",
+    lede: "Three things, every batch: thermal pass at 110°C~, fast-evaporating geometry, softened juvenile-friendly fibre.",
 
     /* For each card:
        • `fallbackImg` — set a real image URL or local path to render a photo.
@@ -225,10 +211,8 @@ window.SITE = {
         kicker: "STERILIZE",
         title: "Pathogen free from day one",
         body:
-          "Every particle is thermally pasteurized at 110°C~, then gradually " +
-          "cooled. Pathogens carried in raw wood do not survive the cycle. The " +
-          "bedding ships sealed, dry, and biosecure for stronger biosecurity " +
-          "from the very first chick.",
+          "Every particle pasteurized at 110°C~, then cooled. Pathogens don't " +
+          "survive. Ships sealed, dry, biosecure — from the very first chick.",
         asset: "Low-angle pellet floor — biosecure surface",
         fallbackImg: "images/science/card1.jpg",
         isVideo: false,
@@ -238,10 +222,8 @@ window.SITE = {
         kicker: "DRY",
         title: "Engineered for maximum absorption",
         body:
-          "Finely ground and pressure treated to maximise porosity. SecuriPad has " +
-          "high evaporation capacity, absorbing more moisture and releasing it " +
-          "faster than commercial sawdust. Drier litter, less disease, lower " +
-          "ammonia across the full grow out cycle.",
+          "Pressure-treated for maximum porosity. Absorbs more, releases faster " +
+          "than sawdust. Drier litter, less disease, lower ammonia — full cycle.",
         asset: "Production yard — fresh SecuriPad, bulk delivery",
         fallbackImg: "images/science/card2.jpg",
         isVideo: false,
@@ -251,10 +233,8 @@ window.SITE = {
         kicker: "SAFE",
         title: "Safe to walk, rest, and grow on",
         body:
-          "A coarse then gentle crushing, plus thermal softening of the wood fibre, " +
-          "gives a soft, insulating floor. The first juvenile days are the highest " +
-          "risk period. Reduced risk of footpad dermatitis and breast burns. " +
-          "Chickens feel safe to walk, rest, and grow on SecuriPad.",
+          "Coarse-then-fine crushing plus thermal softening — a gentle, insulated " +
+          "floor. Reduced footpad dermatitis and breast burns through the highest-risk juvenile days.",
         asset: "Chicks on SecuriPad — soft, safe surface",
         fallbackImg: "images/science/card3.jpg",
         isVideo: false,
@@ -273,9 +253,7 @@ window.SITE = {
     eyebrow:        "§ 03 · ON THE FARM",
     headline:       "Already in working",
     headlineItalic: "houses today.",
-    lede:
-      "Cooperatives and integrators raising broilers and turkeys are using " +
-      "SecuriPad in commercial production right now. The list keeps growing.",
+    lede: "Integrators using SecuriPad in commercial production today.",
 
     items: [
       { name: "Kibbutz Revadim",    type: "Turkey",  loc: "Southern District",
@@ -302,9 +280,7 @@ window.SITE = {
     eyebrow:        "§ 05 · CONTACT",
     headline:       "Talk",
     headlineItalic: "to us.",
-    lede:
-      "We would love to hear from you, meet you, and walk you through exactly " +
-      "how SecuriPad can make your farms healthier and more successful.",
+    lede: "Tell us about your houses. We'll show you how SecuriPad makes them healthier.",
 
     /* Packaging / supply formats callout — sits above the form. */
     packaging: {

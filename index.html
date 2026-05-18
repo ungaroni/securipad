@@ -104,6 +104,29 @@
       .frow3{grid-template-columns:1fr 1fr!important;}
       .footer-grid{grid-template-columns:1fr!important;}
       .su-flow{flex-direction:column!important;}
+
+      /* Mobile padding cuts — sections breathe less, page feels tighter */
+      section{padding:70px 0!important;}
+      .product-stage > div:nth-child(2){padding:32px 24px!important;}
+      .product-nav button{padding:14px 16px!important;}
+
+      /* Mobile font cuts */
+      .sectionhead h2{font-size:36px!important;line-height:1.05!important;}
+      .sectionhead p{font-size:15px!important;}
+      .hero h1{font-size:44px!important;line-height:1.02!important;}
+      .hero-body{font-size:15px!important;}
+
+      /* Hide low-value chrome on mobile */
+      .marquee-wrap{display:none!important;}
+      .science-process{display:none!important;}
+      .cert-band-sub{display:none!important;}
+      .farms-tile-loc{font-size:11px!important;}
+      .footer-copyright-row{flex-direction:column!important;gap:8px!important;}
+
+      /* Carousel — stack 3 nav tabs into one column for legibility */
+      .product-nav{grid-template-columns:1fr!important;}
+      .product-nav button{border-right:none!important;border-top:1px solid var(--rule)!important;}
+      .product-nav button:first-child{border-top:none!important;}
     }
   </style>
 </head>
@@ -193,7 +216,7 @@
     // ── Section head ──────────────────────────────────────────────────
     function SectionHead({ eye, h, hItalic, lede, invert }) {
       return (
-        <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 32px 56px" }}>
+        <div className="sectionhead" style={{ maxWidth: 1320, margin: "0 auto", padding: "0 32px 56px" }}>
           <Reveal style={{ display:"inline-flex", alignItems:"center", gap:10,
             fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase",
             color: invert ? "var(--leaf)" : "var(--leaf-deep)", marginBottom: 22 }}>
@@ -293,7 +316,7 @@
       const items = h.marquee || [];
 
       return (
-        <section id="top" style={{ position: "relative", padding: "16px 0 0" }}>
+        <section id="top" className="hero" style={{ position: "relative", padding: "16px 0 0" }}>
           <div className="hero-grid" style={{ maxWidth: 1360, margin: "0 auto", padding: "56px 32px 72px",
             display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -306,7 +329,7 @@
                 lineHeight: 1.0, letterSpacing: -0.02, margin: "28px 0 28px", color: "var(--ink)" }}>
                 {h.headlineStart}<em style={{ fontStyle:"italic", fontWeight:500, color: "var(--orange)" }}>{h.headlineItalic}</em>{h.headlineEnd}
               </Reveal>
-              <Reveal as="p" delay={160} style={{ fontSize: 19, lineHeight: 1.7, color: "var(--brown)",
+              <Reveal as="p" className="hero-body" delay={160} style={{ fontSize: 19, lineHeight: 1.7, color: "var(--brown)",
                 margin: "0 0 36px", maxWidth: 560 }}>
                 {h.body}
               </Reveal>
@@ -363,7 +386,7 @@
             </Reveal>
           </div>
           {/* Marquee */}
-          <div style={{ background: "var(--soil)", overflow: "hidden" }}>
+          <div className="marquee-wrap" style={{ background: "var(--soil)", overflow: "hidden" }}>
             <div style={{ display: "flex", gap: 56, animation: "mq 55s linear infinite",
               whiteSpace: "nowrap", width: "max-content", padding: "18px 0" }}>
               {[...items, ...items].map((t, i) => (
@@ -570,7 +593,7 @@
           </div>
 
           {/* Process strip — three step explanation */}
-          <div style={{ maxWidth:1360, margin:"60px auto 0", padding:"0 32px" }}>
+          <div className="science-process" style={{ maxWidth:1360, margin:"60px auto 0", padding:"0 32px" }}>
             <div style={{ display:"flex", flexWrap:"wrap", alignItems:"stretch", gap:0,
               background:"var(--ink)", color:"var(--cream)", borderRadius:8, overflow:"hidden" }}>
               {process.map(([k, t, s], i) => (
